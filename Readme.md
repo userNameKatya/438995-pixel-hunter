@@ -1,7 +1,7 @@
 # Личный проект «Пиксель хантер» [![Build status][travis-image]][travis-url]
 
 * Студент: [Екатерина Кондратьева](https://up.htmlacademy.ru/ecmascript/2/user/438995).
-* Наставник: `Неизвестно`.
+* Наставник: [Иван Соснин](https://htmlacademy.ru/profile/id169118).
 
 ---
 
