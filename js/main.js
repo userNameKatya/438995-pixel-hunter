@@ -16,7 +16,7 @@
   document.addEventListener(`keydown`, function (event) {
     if (event.altKey) {
       if (event.keyCode === enumeration.leftArrow) {
-        if (!!activeScreen) {
+        if (activeScreen) {
           changeScreen(activeScreen - 1);
         }
         event.preventDefault();
