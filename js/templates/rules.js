@@ -1,4 +1,4 @@
-import getElementFromTemplate from `../templating`;
+import getElementFromTemplate from '../templating';
 
 const element = getElementFromTemplate(`
   <header class="header">
@@ -26,5 +26,16 @@ const element = getElementFromTemplate(`
     </form>
   </div>
 `);
+
+const submitBtn = element.querySelector(`.rules__button`);
+const input = element.querySelector(`.rules__input`);
+
+input.addEventListener(`change`, function (e) {
+  if (e.target.value.length) {
+    submitBtn.disabled = false;
+  } else {
+    submitBtn.disabled = true;
+  }
+});
 
 export default element;

@@ -1,4 +1,4 @@
-import getElementFromTemplate from `../templating`;
+import getElementFromTemplate from '../templating';
 
 const element = getElementFromTemplate(`
   <header class="header">

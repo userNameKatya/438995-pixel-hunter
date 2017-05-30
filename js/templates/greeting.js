@@ -1,4 +1,6 @@
-import getElementFromTemplate from `../templating`;
+import getElementFromTemplate from '../templating';
+import changeScreen from '../change_screen.js';
+import rules from './rules.js';
 
 const element = getElementFromTemplate(`
   <div class="greeting central--blur">
@@ -15,5 +17,11 @@ const element = getElementFromTemplate(`
     <div class="greeting__continue"><span><img src="img/arrow_right.svg" width="64" height="64" alt="Next"></span></div>
   </div>
 `);
+
+const nextScreen = element.querySelector(`.greeting__continue`);
+
+nextScreen.addEventListener(`click`, function (e) {
+  changeScreen(rules);
+});
 
 export default element;

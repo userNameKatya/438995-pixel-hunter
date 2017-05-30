@@ -1,5 +1,4 @@
-import element as intro from `./templates/intro.js`;
+import element from './templates/intro.js';
+import changeScreen from './change_screen.js';
 
-const mainScreen = document.getElementById(`main`);
-
-mainScreen.innerHTML = element;
+changeScreen(element);
