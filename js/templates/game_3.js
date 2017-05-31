@@ -1,4 +1,6 @@
 import getElementFromTemplate from '../templating';
+import changeScreen from '../change_screen.js';
+import stats from './stats.js';
 
 const element = getElementFromTemplate(`
   <header class="header">
@@ -44,5 +46,14 @@ const element = getElementFromTemplate(`
     </div>
   </div>
 `);
+
+const answers = [...element.querySelectorAll(`.game__option`)];
+
+for (let answer of answers) {
+  answer.addEventListener(`click`, function (e) {
+    e.preventDefault();
+    changeScreen(stats);
+  });
+}
 
 export default element;

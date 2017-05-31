@@ -1,4 +1,7 @@
 import getElementFromTemplate from '../templating';
+import changeScreen from '../change_screen.js';
+import intro from './intro.js';
+import game from './game_2.js';
 
 const element = getElementFromTemplate(`
   <header class="header">
@@ -57,5 +60,20 @@ const element = getElementFromTemplate(`
     </div>
   </div>
 `);
+
+const answers = [...element.querySelectorAll(`input[type="radio"]`)];
+
+for (let answer of answers) {
+  answer.addEventListener(`change`, function (e) {
+    if ([...document.querySelectorAll(`input[type="radio"]:checked`)].length === 2) {
+      changeScreen(game);
+    }
+  });
+}
+
+const goToStart = element.querySelector(`.header__back`);
+goToStart.addEventListener(`click`, function (e) {
+  changeScreen(intro);
+});
 
 export default element;

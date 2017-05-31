@@ -1,4 +1,6 @@
 import getElementFromTemplate from '../templating';
+import changeScreen from '../change_screen.js';
+import game from './game_1.js';
 
 const element = getElementFromTemplate(`
   <header class="header">
@@ -29,6 +31,7 @@ const element = getElementFromTemplate(`
 
 const submitBtn = element.querySelector(`.rules__button`);
 const input = element.querySelector(`.rules__input`);
+const form = element.querySelector(`.rules__form`);
 
 input.addEventListener(`change`, function (e) {
   if (e.target.value.length) {
@@ -36,6 +39,12 @@ input.addEventListener(`change`, function (e) {
   } else {
     submitBtn.disabled = true;
   }
+});
+
+form.addEventListener(`submit`, function (e) {
+  e.preventDefault();
+  // Ajax
+  changeScreen(game);
 });
 
 export default element;

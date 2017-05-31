@@ -1,11 +1,11 @@
-const mainScreen = document.getElementById(`main`);
+import footer from './templates/footer.js';
+
+const mainScreen = document.querySelector(`main.central`);
 
 const changeScreen = function (screen) {
-  Array.from(mainScreen.childNodes).forEach(function (item) {
-    mainScreen.removeChild(item);
-  });
-
+  mainScreen.innerHTML = ``;
   mainScreen.appendChild(screen);
+  mainScreen.appendChild(footer.cloneNode(true));
 };
 
 export default changeScreen;
