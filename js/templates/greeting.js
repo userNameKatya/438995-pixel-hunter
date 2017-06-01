@@ -18,10 +18,10 @@ const element = getElementFromTemplate(`
   </div>
 `);
 
-const nextScreen = element.querySelector(`.greeting__continue`);
+const nextScreen = element.content.querySelector(`.greeting__continue`);
 
 nextScreen.addEventListener(`click`, function (e) {
   changeScreen(rules);
 });
 
-export default element;
+export default element.content;

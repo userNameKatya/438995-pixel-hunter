@@ -29,9 +29,9 @@ const element = getElementFromTemplate(`
   </div>
 `);
 
-const submitBtn = element.querySelector(`.rules__button`);
-const input = element.querySelector(`.rules__input`);
-const form = element.querySelector(`.rules__form`);
+const submitBtn = element.content.querySelector(`.rules__button`);
+const input = element.content.querySelector(`.rules__input`);
+const form = element.content.querySelector(`.rules__form`);
 
 input.addEventListener(`change`, function (e) {
   if (e.target.value.length) {
@@ -47,4 +47,4 @@ form.addEventListener(`submit`, function (e) {
   changeScreen(game);
 });
 
-export default element;
+export default element.content;

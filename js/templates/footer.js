@@ -13,4 +13,4 @@ const element = getElementFromTemplate(`
   </footer>
 `);
 
-export default element;
+export default element.content;

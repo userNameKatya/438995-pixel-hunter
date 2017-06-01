@@ -11,10 +11,10 @@ const element = getElementFromTemplate(`
   </div>
 `);
 
-const nextScreen = element.querySelector(`.intro__asterisk`);
+const nextScreen = element.content.querySelector(`.intro__asterisk`);
 
 nextScreen.addEventListener(`click`, function (e) {
   changeScreen(greeting);
 });
 
-export default element;
+export default element.content;

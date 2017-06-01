@@ -47,7 +47,7 @@ const element = getElementFromTemplate(`
   </div>
 `);
 
-const answers = [...element.querySelectorAll(`.game__option`)];
+const answers = [...element.content.querySelectorAll(`.game__option`)];
 
 for (let answer of answers) {
   answer.addEventListener(`click`, function (e) {
@@ -56,4 +56,4 @@ for (let answer of answers) {
   });
 }
 
-export default element;
+export default element.content;

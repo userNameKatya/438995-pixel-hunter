@@ -111,4 +111,4 @@ const element = getElementFromTemplate(`
   </div>
 `);
 
-export default element;
+export default element.content;

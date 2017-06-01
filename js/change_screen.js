@@ -5,7 +5,7 @@ const mainScreen = document.querySelector(`main.central`);
 const changeScreen = function (screen) {
   mainScreen.innerHTML = ``;
   mainScreen.appendChild(screen);
-  mainScreen.appendChild(footer.cloneNode(true));
+  mainScreen.appendChild(footer);
 };
 
 export default changeScreen;

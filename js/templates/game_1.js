@@ -61,7 +61,7 @@ const element = getElementFromTemplate(`
   </div>
 `);
 
-const answers = [...element.querySelectorAll(`input[type="radio"]`)];
+const answers = [...element.content.querySelectorAll(`input[type="radio"]`)];
 
 for (let answer of answers) {
   answer.addEventListener(`change`, function (e) {
@@ -71,9 +71,9 @@ for (let answer of answers) {
   });
 }
 
-const goToStart = element.querySelector(`.header__back`);
+const goToStart = element.content.querySelector(`.header__back`);
 goToStart.addEventListener(`click`, function (e) {
   changeScreen(intro);
 });
 
-export default element;
+export default element.content;
