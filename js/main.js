@@ -1,4 +1,3 @@
-import intro from './templates/intro.js';
-import changeScreen from './change_screen.js';
+import intro from './templates/intro';
 
-changeScreen(intro);
+intro();
