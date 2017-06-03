@@ -24,22 +24,22 @@ const game = () => {
       <form class="game__content">
         <div class="game__option">
           <img src="http://placehold.it/468x458" alt="Option 1" width="468" height="458">
-          <label class="game__answer game__answer--photo">
+          <label class="game__answer game__answer--photo js-answer">
             <input name="question1" type="radio" value="photo">
             <span>Фото</span>
           </label>
-          <label class="game__answer game__answer--paint">
+          <label class="game__answer game__answer--paint js-answer">
             <input name="question1" type="radio" value="paint">
             <span>Рисунок</span>
           </label>
         </div>
         <div class="game__option">
           <img src="http://placehold.it/468x458" alt="Option 2" width="468" height="458">
-          <label class="game__answer  game__answer--photo">
+          <label class="game__answer  game__answer--photo js-answer">
             <input name="question2" type="radio" value="photo">
             <span>Фото</span>
           </label>
-          <label class="game__answer  game__answer--paint">
+          <label class="game__answer  game__answer--paint js-answer">
             <input name="question2" type="radio" value="paint">
             <span>Рисунок</span>
           </label>
@@ -62,7 +62,7 @@ const game = () => {
     </div>
   `);
   const cloneElement = element.cloneNode(true);
-  const answers = [...cloneElement.querySelectorAll(`input[type="radio"]`)];
+  const answers = [...cloneElement.querySelectorAll(`.js-answer`)];
 
   for (let answer of answers) {
     answer.addEventListener(`change`, function (e) {
