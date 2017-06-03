@@ -6,7 +6,7 @@ import game from './game_1';
 const rules = () => {
   const element = getElementFromTemplate(`
     <header class="header">
-      <div class="header__back">
+      <div class="header__back js-start-over">
         <span class="back">
           <img src="img/arrow_left.svg" width="45" height="45" alt="Back">
           <img src="img/logo_small.png" width="101" height="44">
@@ -24,17 +24,17 @@ const rules = () => {
         <br>
         Готовы?
       </p>
-      <form class="rules__form">
-        <input class="rules__input" type="text" placeholder="Ваше Имя">
-        <button class="rules__button  continue" type="submit" disabled>Go!</button>
+      <form class="rules__form js-form">
+        <input class="rules__input js-input" type="text" placeholder="Ваше Имя">
+        <button class="rules__button continue js-submit-btn" type="submit" disabled>Go!</button>
       </form>
     </div>
   `);
 
   const cloneElement = element.cloneNode(true);
-  const submitBtn = cloneElement.querySelector(`.rules__button`);
-  const input = cloneElement.querySelector(`.rules__input`);
-  const form = cloneElement.querySelector(`.rules__form`);
+  const submitBtn = cloneElement.querySelector(`.js-submit-btn`);
+  const input = cloneElement.querySelector(`.js-input`);
+  const form = cloneElement.querySelector(`.js-form`);
 
   input.addEventListener(`change`, function (e) {
     if (e.target.value.length) {

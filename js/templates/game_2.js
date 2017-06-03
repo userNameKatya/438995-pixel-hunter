@@ -6,7 +6,7 @@ import newGame from './game_3';
 const game = () => {
   const element = getElementFromTemplate(`
     <header class="header">
-      <div class="header__back">
+      <div class="header__back js-start-over">
         <span class="back">
           <img src="img/arrow_left.svg" width="45" height="45" alt="Back">
           <img src="img/logo_small.png" width="101" height="44">
@@ -24,11 +24,11 @@ const game = () => {
       <form class="game__content  game__content--wide">
         <div class="game__option">
           <img src="http://placehold.it/705x455" alt="Option 1" width="705" height="455">
-          <label class="game__answer  game__answer--photo">
+          <label class="game__answer  game__answer--photo js-answer">
             <input name="question1" type="radio" value="photo">
             <span>Фото</span>
           </label>
-          <label class="game__answer  game__answer--wide  game__answer--paint">
+          <label class="game__answer  game__answer--wide game__answer--paint js-answer">
             <input name="question1" type="radio" value="paint">
             <span>Рисунок</span>
           </label>
@@ -52,7 +52,7 @@ const game = () => {
   `);
 
   const cloneElement = element.cloneNode(true);
-  const answers = [...cloneElement.querySelectorAll(`.game__answer`)];
+  const answers = [...cloneElement.querySelectorAll(`.js-answer`)];
 
   for (let answer of answers) {
     answer.addEventListener(`click`, function (e) {

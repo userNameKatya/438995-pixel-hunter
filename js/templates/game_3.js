@@ -6,7 +6,7 @@ import stats from './stats';
 const game = () => {
   const element = getElementFromTemplate(`
     <header class="header">
-      <div class="header__back">
+      <div class="header__back js-start-over">
         <span class="back">
           <img src="img/arrow_left.svg" width="45" height="45" alt="Back">
           <img src="img/logo_small.png" width="101" height="44">
@@ -22,13 +22,13 @@ const game = () => {
     <div class="game">
       <p class="game__task">Найдите рисунок среди изображений</p>
       <form class="game__content  game__content--triple">
-        <div class="game__option">
+        <div class="game__option js-answer">
           <img src="http://placehold.it/304x455" alt="Option 1" width="304" height="455">
         </div>
-        <div class="game__option  game__option--selected">
+        <div class="game__option game__option--selected js-answer">
           <img src="http://placehold.it/304x455" alt="Option 1" width="304" height="455">
         </div>
-        <div class="game__option">
+        <div class="game__option js-answer">
           <img src="http://placehold.it/304x455" alt="Option 1" width="304" height="455">
         </div>
       </form>
@@ -50,7 +50,7 @@ const game = () => {
   `);
 
   const cloneElement = element.cloneNode(true);
-  const answers = [...cloneElement.querySelectorAll(`.game__option`)];
+  const answers = [...cloneElement.querySelectorAll(`.js-answer`)];
 
   for (let answer of answers) {
     answer.addEventListener(`click`, function (e) {

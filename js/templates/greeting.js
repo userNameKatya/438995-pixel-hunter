@@ -15,12 +15,12 @@ const greeting = () => {
           Фотореализм обманчив и коварен.<br>
           Помни, главное — смотреть очень внимательно.</p>
       </div>
-      <div class="greeting__continue"><span><img src="img/arrow_right.svg" width="64" height="64" alt="Next"></span></div>
+      <div class="greeting__continue js-next-screen"><span><img src="img/arrow_right.svg" width="64" height="64" alt="Next"></span></div>
     </div>
   `);
 
   const cloneElement = element.cloneNode(true);
-  const nextScreenBtn = cloneElement.querySelector(`.greeting__continue`);
+  const nextScreenBtn = cloneElement.querySelector(`.js-next-screen`);
 
   nextScreenBtn.addEventListener(`click`, function (e) {
     rules();

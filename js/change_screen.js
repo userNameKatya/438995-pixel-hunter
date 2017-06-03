@@ -1,6 +1,6 @@
 import footer from './templates/footer';
 
-const mainScreen = document.querySelector(`main.central`);
+const mainScreen = document.querySelector(`.js-main-screen`);
 
 const changeScreen = function (screen) {
   mainScreen.innerHTML = ``;
