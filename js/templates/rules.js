@@ -3,6 +3,43 @@ import changeScreen from '../change_screen';
 import startOver from '../start_over';
 import game from './game_1';
 
+const descriptionGame = {
+  task: `Угадайте для каждого изображения фото или рисунок?`,
+  type: ``,
+  option: new Set([
+    {
+      img: `http://placehold.it/468x458`,
+      answers: new Set([
+        {
+          name: `option1`,
+          value: `photo`,
+          trueAnswer: false
+        },
+        {
+          name: `option2`,
+          value: `paint`,
+          trueAnswer: true
+        }
+      ])
+    },
+    {
+      img: `http://placehold.it/468x458`,
+      answers: new Set([
+        {
+          name: `option1`,
+          value: `photo`,
+          trueAnswer: true
+        },
+        {
+          name: `option2`,
+          value: `paint`,
+          trueAnswer: false
+        }
+      ])
+    }
+  ])
+};
+
 const rules = () => {
   const element = getElementFromTemplate(`
     <header class="header">
@@ -47,7 +84,7 @@ const rules = () => {
   form.addEventListener(`submit`, function (e) {
     e.preventDefault();
     // Ajax
-    game();
+    game(descriptionGame);
   });
 
   changeScreen(cloneElement);
