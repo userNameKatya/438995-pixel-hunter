@@ -1,16 +1,16 @@
-const stats = () => {
+const stats = (data) => {
   const element = `<div class="stats">
     <ul class="stats">
-      <li class="stats__result stats__result--wrong"></li>
-      <li class="stats__result stats__result--slow"></li>
-      <li class="stats__result stats__result--fast"></li>
-      <li class="stats__result stats__result--correct"></li>
-      <li class="stats__result stats__result--unknown"></li>
-      <li class="stats__result stats__result--unknown"></li>
-      <li class="stats__result stats__result--unknown"></li>
-      <li class="stats__result stats__result--unknown"></li>
-      <li class="stats__result stats__result--unknown"></li>
-      <li class="stats__result stats__result--unknown"></li>
+      ${
+        data.game_stats.map((stat) => {
+          return `<li class="stats__result stats__result--${stat}"></li>`
+        }).join(``)
+      }
+      ${
+        new Array(data.total_games - data.game_stats.length)
+        .fill(`<li class="stats__result stats__result--unknown"></li>`)
+        .join(``)
+      }
     </ul>
   </div>`;
 

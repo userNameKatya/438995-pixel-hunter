@@ -5,23 +5,21 @@ import game_stats from './game_stats';
 import header from './header';
 import stats from './stats';
 
-const game = () => {
+const game = (data, state) => {
   const element = getElementFromTemplate(`
-    ${header()}
+    ${header(state)}
     <div class="game">
       <p class="game__task">Найдите рисунок среди изображений</p>
       <form class="game__content  game__content--triple">
-        <div class="game__option js-answer">
-          <img src="http://placehold.it/304x455" alt="Option 1" width="304" height="455">
-        </div>
-        <div class="game__option game__option--selected js-answer">
-          <img src="http://placehold.it/304x455" alt="Option 1" width="304" height="455">
-        </div>
-        <div class="game__option js-answer">
-          <img src="http://placehold.it/304x455" alt="Option 1" width="304" height="455">
-        </div>
+        ${
+          data.option.map((opt) => {
+            return `<div class="game__option js-answer">
+              <img src="${opt.img}" alt="Option 1" width="304" height="455">
+            </div>`
+          }).join(``)
+        }
       </form>
-      ${game_stats()}
+      ${game_stats(state)}
     </div>
   `);
 

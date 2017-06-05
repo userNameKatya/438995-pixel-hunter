@@ -5,25 +5,89 @@ import game_stats from './game_stats';
 import newGame from './game_3';
 import header from './header';
 
-const game = () => {
+const descriptionGame = {
+  task: `Угадайте для каждого изображения фото или рисунок?`,
+  type: ``,
+  option: [
+    {
+      img: `http://placehold.it/304x455`,
+      answers: [
+        {
+          name: `option1`,
+          value: `photo`,
+          description: `Фото`,
+          trueAnswer: false
+        },
+        {
+          name: `option1`,
+          value: `paint`,
+          description: `Рисунок`,
+          trueAnswer: true
+        }
+      ]
+    },
+    {
+      img: `http://placehold.it/304x455`,
+      answers: [
+        {
+          name: `option1`,
+          value: `photo`,
+          description: `Фото`,
+          trueAnswer: false
+        },
+        {
+          name: `option1`,
+          value: `paint`,
+          description: `Рисунок`,
+          trueAnswer: true
+        }
+      ]
+    },
+    {
+      img: `http://placehold.it/304x455`,
+      answers: [
+        {
+          name: `option1`,
+          value: `photo`,
+          description: `Фото`,
+          trueAnswer: false
+        },
+        {
+          name: `option1`,
+          value: `paint`,
+          description: `Рисунок`,
+          trueAnswer: true
+        }
+      ]
+    }
+  ],
+  total_games: 10,
+  game_stats: [`correct`, `wrong`]
+};
+
+const game = (data, state) => {
   const element = getElementFromTemplate(`
-    ${header()}
+    ${header(state)}
     <div class="game">
       <p class="game__task">Угадай, фото или рисунок?</p>
       <form class="game__content  game__content--wide">
-        <div class="game__option">
-          <img src="http://placehold.it/705x455" alt="Option 1" width="705" height="455">
-          <label class="game__answer  game__answer--photo js-answer">
-            <input name="question1" type="radio" value="photo">
-            <span>Фото</span>
-          </label>
-          <label class="game__answer  game__answer--wide game__answer--paint js-answer">
-            <input name="question1" type="radio" value="paint">
-            <span>Рисунок</span>
-          </label>
-        </div>
+        ${
+          data.option.map((opt) => {
+            return `<div class="game__option">
+              <img src="${opt.img}" alt="Option 1" width="705" height="455">
+              ${
+                opt.answers.map((answer) => {
+                return `<label class="game__answer game__answer--${answer.value} js-answer">
+                  <input name="${answer.name}" type="radio" value="${answer.value}">
+                  <span>${answer.description}</span>
+                </label>`
+                }).join(``)
+              }
+            </div>`
+          }).join(``)
+        }
       </form>
-      ${game_stats()}
+      ${game_stats(state)}
     </div>
   `);
 
@@ -33,7 +97,7 @@ const game = () => {
   for (let answer of answers) {
     answer.addEventListener(`click`, function (e) {
       e.preventDefault();
-      newGame();
+      newGame(descriptionGame, state);
     });
   }
 
