@@ -2,7 +2,7 @@ import getElementFromTemplate from '../templating';
 import changeScreen from '../change_screen';
 import startOver from '../start_over';
 import resizeImg from '../resize_img';
-import game_stats from './game_stats';
+import gameStats from './game_stats';
 import newGame from './game_2';
 import header from './header';
 
@@ -27,9 +27,7 @@ const descriptionGame = {
         }
       ]
     }
-  ],
-  total_games: 10,
-  game_stats: [`correct`]
+  ]
 };
 
 const game = (data, state) => {
@@ -44,17 +42,17 @@ const game = (data, state) => {
             <img src="${opt.img}" alt="Option 1" class="js-image">
             ${
               opt.answers.map((answer) => {
-              return `<label class="game__answer game__answer--${answer.value} js-answer">
-                <input name="${answer.name}" type="radio" value="${answer.value}">
-                <span>${answer.description}</span>
-              </label>`
+                return `<label class="game__answer game__answer--${answer.value} js-answer">
+                  <input name="${answer.name}" type="radio" value="${answer.value}">
+                  <span>${answer.description}</span>
+                </label>`;
               }).join(``)
             }
-          </div>`
+          </div>`;
         }).join(``)
       }
       </form>
-      ${game_stats(state)}
+      ${gameStats(state)}
     </div>
   `);
 

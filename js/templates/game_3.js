@@ -1,7 +1,7 @@
 import getElementFromTemplate from '../templating';
 import changeScreen from '../change_screen';
 import startOver from '../start_over';
-import game_stats from './game_stats';
+import gameStats from './game_stats';
 import resizeImg from '../resize_img';
 import header from './header';
 import stats from './stats';
@@ -16,11 +16,11 @@ const game = (data, state) => {
           data.option.map((opt) => {
             return `<div class="game__option js-answer">
               <img src="${opt.img}" alt="Option 1" width="304" height="455">
-            </div>`
+            </div>`;
           }).join(``)
         }
       </form>
-      ${game_stats(state)}
+      ${gameStats(state)}
     </div>
   `);
 

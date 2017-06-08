@@ -2,12 +2,12 @@ const stats = (data) => {
   const element = `<div class="stats">
     <ul class="stats">
       ${
-        data.game_stats.map((stat) => {
-          return `<li class="stats__result stats__result--${stat}"></li>`
+        data.gameStats.map((stat) => {
+          return `<li class="stats__result stats__result--${stat}"></li>`;
         }).join(``)
       }
       ${
-        new Array(data.total_games - data.game_stats.length)
+        new Array(data.totalGames - data.gameStats.length)
         .fill(`<li class="stats__result stats__result--unknown"></li>`)
         .join(``)
       }
