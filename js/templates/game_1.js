@@ -1,6 +1,7 @@
 import getElementFromTemplate from '../templating';
 import changeScreen from '../change_screen';
 import startOver from '../start_over';
+import resizeImg from '../resize_img';
 import game_stats from './game_stats';
 import newGame from './game_2';
 import header from './header';
@@ -10,7 +11,7 @@ const descriptionGame = {
   type: ``,
   option: [
     {
-      img: `http://placehold.it/705x455`,
+      img: `https://k42.kn3.net/D2F0370D6.jpg`,
       answers: [
         {
           name: `option1`,
@@ -40,7 +41,7 @@ const game = (data, state) => {
       ${
         data.option.map((opt) => {
           return `<div class="game__option">
-            <img src="${opt.img}" alt="Option 1" width="468" height="458">
+            <img src="${opt.img}" alt="Option 1" class="js-image">
             ${
               opt.answers.map((answer) => {
               return `<label class="game__answer game__answer--${answer.value} js-answer">
@@ -68,6 +69,7 @@ const game = (data, state) => {
     });
   }
 
+  resizeImg(cloneElement);
   changeScreen(cloneElement);
   startOver();
 };

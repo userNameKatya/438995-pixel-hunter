@@ -2,22 +2,17 @@ import getElementFromTemplate from '../templating';
 import changeScreen from '../change_screen';
 import startOver from '../start_over';
 import game_stats from './game_stats';
+import resizeImg from '../resize_img';
 import newGame from './game_3';
 import header from './header';
 
 const descriptionGame = {
-  task: `Угадайте для каждого изображения фото или рисунок?`,
+  task: `Найдите рисунок среди изображений?`,
   type: ``,
   option: [
     {
-      img: `http://placehold.it/304x455`,
+      img: `https://k32.kn3.net/5C7060EC5.jpg`,
       answers: [
-        {
-          name: `option1`,
-          value: `photo`,
-          description: `Фото`,
-          trueAnswer: false
-        },
         {
           name: `option1`,
           value: `paint`,
@@ -27,36 +22,24 @@ const descriptionGame = {
       ]
     },
     {
-      img: `http://placehold.it/304x455`,
+      img: `https://i.imgur.com/DiHM5Zb.jpg`,
       answers: [
         {
           name: `option1`,
           value: `photo`,
           description: `Фото`,
           trueAnswer: false
-        },
-        {
-          name: `option1`,
-          value: `paint`,
-          description: `Рисунок`,
-          trueAnswer: true
         }
       ]
     },
     {
-      img: `http://placehold.it/304x455`,
+      img: `http://i.imgur.com/DKR1HtB.jpg`,
       answers: [
         {
           name: `option1`,
           value: `photo`,
           description: `Фото`,
           trueAnswer: false
-        },
-        {
-          name: `option1`,
-          value: `paint`,
-          description: `Рисунок`,
-          trueAnswer: true
         }
       ]
     }
@@ -74,7 +57,7 @@ const game = (data, state) => {
         ${
           data.option.map((opt) => {
             return `<div class="game__option">
-              <img src="${opt.img}" alt="Option 1" width="705" height="455">
+              <img src="${opt.img}" alt="Option 1" class="js-image">
               ${
                 opt.answers.map((answer) => {
                 return `<label class="game__answer game__answer--${answer.value} js-answer">
@@ -101,6 +84,7 @@ const game = (data, state) => {
     });
   }
 
+  resizeImg(cloneElement);
   changeScreen(cloneElement);
   startOver();
 };

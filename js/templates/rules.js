@@ -9,7 +9,7 @@ const descriptionGame = {
   type: ``,
   option: [
     {
-      img: `http://placehold.it/468x458`,
+      img: `https://k42.kn3.net/CF42609C8.jpg`,
       answers: [
         {
           name: `option1`,
@@ -26,7 +26,7 @@ const descriptionGame = {
       ]
     },
     {
-      img: `http://placehold.it/468x458`,
+      img: `http://i.imgur.com/1KegWPz.jpg`,
       answers: [
         {
           name: `option2`,
@@ -93,6 +93,7 @@ const rules = () => {
   });
 
   changeScreen(cloneElement);
+  input.focus();
   startOver();
 };
 

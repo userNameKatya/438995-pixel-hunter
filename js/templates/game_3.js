@@ -2,6 +2,7 @@ import getElementFromTemplate from '../templating';
 import changeScreen from '../change_screen';
 import startOver from '../start_over';
 import game_stats from './game_stats';
+import resizeImg from '../resize_img';
 import header from './header';
 import stats from './stats';
 
@@ -9,7 +10,7 @@ const game = (data, state) => {
   const element = getElementFromTemplate(`
     ${header(state)}
     <div class="game">
-      <p class="game__task">Найдите рисунок среди изображений</p>
+      <p class="game__task">${data.task}</p>
       <form class="game__content  game__content--triple">
         ${
           data.option.map((opt) => {
@@ -33,6 +34,7 @@ const game = (data, state) => {
     });
   }
 
+  resizeImg(cloneElement);
   changeScreen(cloneElement);
   startOver();
 };
