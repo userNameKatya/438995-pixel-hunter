@@ -1,4 +1,4 @@
-const resizeImg = function (element) {
+const resizeImage = function (element) {
   const images = [...element.querySelectorAll(`.js-image`)];
 
   for (const image of images) {
@@ -15,4 +15,4 @@ const resizeImg = function (element) {
   }
 };
 
-export default resizeImg;
+export default resizeImage;

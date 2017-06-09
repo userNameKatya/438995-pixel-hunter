@@ -1,36 +1,12 @@
 import getElementFromTemplate from '../templating';
 import changeScreen from '../change_screen';
 import startOver from '../start_over';
-import resizeImg from '../resize_img';
+import resizeImage from '../resize_image';
 import gameStats from './game_stats';
-import newGame from './game_2';
 import header from './header';
+import game from '../game';
 
-const descriptionGame = {
-  task: `Угадайте для каждого изображения фото или рисунок?`,
-  type: ``,
-  option: [
-    {
-      img: `https://k42.kn3.net/D2F0370D6.jpg`,
-      answers: [
-        {
-          name: `option1`,
-          value: `photo`,
-          description: `Фото`,
-          trueAnswer: false
-        },
-        {
-          name: `option1`,
-          value: `paint`,
-          description: `Рисунок`,
-          trueAnswer: true
-        }
-      ]
-    }
-  ]
-};
-
-const game = (data, state) => {
+const round = (data, state) => {
   const element = getElementFromTemplate(`
     ${header(state)}
     <div class="game">
@@ -62,14 +38,14 @@ const game = (data, state) => {
   for (let answer of answers) {
     answer.addEventListener(`change`, function (e) {
       if ([...document.querySelectorAll(`input[type="radio"]:checked`)].length === 2) {
-        newGame(descriptionGame, state);
+        game[state.currentRound + 1].type(game[state.currentRound + 1], state);
       }
     });
   }
 
-  resizeImg(cloneElement);
+  resizeImage(cloneElement);
   changeScreen(cloneElement);
   startOver();
 };
 
-export default game;
+export default round;

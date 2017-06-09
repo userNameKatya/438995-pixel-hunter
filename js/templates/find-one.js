@@ -2,11 +2,12 @@ import getElementFromTemplate from '../templating';
 import changeScreen from '../change_screen';
 import startOver from '../start_over';
 import gameStats from './game_stats';
-import resizeImg from '../resize_img';
+import resizeImage from '../resize_image';
 import header from './header';
+import game from '../game';
 import stats from './stats';
 
-const game = (data, state) => {
+const round = (data, state) => {
   const element = getElementFromTemplate(`
     ${header(state)}
     <div class="game">
@@ -34,9 +35,9 @@ const game = (data, state) => {
     });
   }
 
-  resizeImg(cloneElement);
+  resizeImage(cloneElement);
   changeScreen(cloneElement);
   startOver();
 };
 
-export default game;
+export default round;

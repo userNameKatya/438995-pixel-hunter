@@ -1,7 +1,8 @@
 const initialState = {
   time: 0,
   lives: 3,
-  totalGames: 10,
+  totalRounds: 10,
+  currentRound: 0,
   gameStats: []
 };
 

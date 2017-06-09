@@ -2,48 +2,7 @@ import getElementFromTemplate from '../templating';
 import changeScreen from '../change_screen';
 import startOver from '../start_over';
 import initialState from '../initial_state';
-import game from './game_1';
-
-const descriptionGame = {
-  task: `Угадайте для каждого изображения фото или рисунок?`,
-  type: ``,
-  option: [
-    {
-      img: `https://k42.kn3.net/CF42609C8.jpg`,
-      answers: [
-        {
-          name: `option1`,
-          value: `photo`,
-          description: `Фото`,
-          trueAnswer: false
-        },
-        {
-          name: `option1`,
-          value: `paint`,
-          description: `Рисунок`,
-          trueAnswer: true
-        }
-      ]
-    },
-    {
-      img: `http://i.imgur.com/1KegWPz.jpg`,
-      answers: [
-        {
-          name: `option2`,
-          value: `photo`,
-          description: `Фото`,
-          trueAnswer: true
-        },
-        {
-          name: `option2`,
-          value: `paint`,
-          description: `Рисунок`,
-          trueAnswer: false
-        }
-      ]
-    }
-  ]
-};
+import game from '../game';
 
 const rules = () => {
   const element = getElementFromTemplate(`
@@ -78,18 +37,14 @@ const rules = () => {
   const input = cloneElement.querySelector(`.js-input`);
   const form = cloneElement.querySelector(`.js-form`);
 
-  input.addEventListener(`change`, function (e) {
-    if (e.target.value.length) {
-      submitBtn.disabled = false;
-    } else {
-      submitBtn.disabled = true;
-    }
+  input.addEventListener(`input`, function (e) {
+      submitBtn.disabled = e.target.value.length === 0;
   });
 
   form.addEventListener(`submit`, function (e) {
     e.preventDefault();
     // Ajax
-    game(descriptionGame, initialState);
+    game[initialState.currentRound].type(game[initialState.currentRound], initialState);
   });
 
   changeScreen(cloneElement);

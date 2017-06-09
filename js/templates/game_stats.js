@@ -7,7 +7,7 @@ const stats = (data) => {
         }).join(``)
       }
       ${
-        new Array(data.totalGames - data.gameStats.length)
+        new Array(data.totalRounds - data.gameStats.length)
         .fill(`<li class="stats__result stats__result--unknown"></li>`)
         .join(``)
       }

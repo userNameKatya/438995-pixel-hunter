@@ -2,51 +2,11 @@ import getElementFromTemplate from '../templating';
 import changeScreen from '../change_screen';
 import startOver from '../start_over';
 import gameStats from './game_stats';
-import resizeImg from '../resize_img';
-import newGame from './game_3';
+import resizeImage from '../resize_image';
 import header from './header';
+import game from '../game';
 
-const descriptionGame = {
-  task: `Найдите рисунок среди изображений?`,
-  type: ``,
-  option: [
-    {
-      img: `https://k32.kn3.net/5C7060EC5.jpg`,
-      answers: [
-        {
-          name: `option1`,
-          value: `paint`,
-          description: `Рисунок`,
-          trueAnswer: true
-        }
-      ]
-    },
-    {
-      img: `https://i.imgur.com/DiHM5Zb.jpg`,
-      answers: [
-        {
-          name: `option1`,
-          value: `photo`,
-          description: `Фото`,
-          trueAnswer: false
-        }
-      ]
-    },
-    {
-      img: `http://i.imgur.com/DKR1HtB.jpg`,
-      answers: [
-        {
-          name: `option1`,
-          value: `photo`,
-          description: `Фото`,
-          trueAnswer: false
-        }
-      ]
-    }
-  ]
-};
-
-const game = (data, state) => {
+const round = (data, state) => {
   const element = getElementFromTemplate(`
     ${header(state)}
     <div class="game">
@@ -78,13 +38,13 @@ const game = (data, state) => {
   for (let answer of answers) {
     answer.addEventListener(`click`, function (e) {
       e.preventDefault();
-      newGame(descriptionGame, state);
+      game[state.currentRound + 2].type(game[state.currentRound + 2], state);
     });
   }
 
-  resizeImg(cloneElement);
+  resizeImage(cloneElement);
   changeScreen(cloneElement);
   startOver();
 };
 
-export default game;
+export default round;
