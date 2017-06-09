@@ -4,7 +4,6 @@ import startOver from '../start_over';
 import gameStats from './game_stats';
 import resizeImage from '../resize_image';
 import header from './header';
-import game from '../game';
 import stats from './stats';
 
 const round = (data, state) => {

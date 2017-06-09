@@ -38,7 +38,7 @@ const rules = () => {
   const form = cloneElement.querySelector(`.js-form`);
 
   input.addEventListener(`input`, function (e) {
-      submitBtn.disabled = e.target.value.length === 0;
+    submitBtn.disabled = e.target.value.length === 0;
   });
 
   form.addEventListener(`submit`, function (e) {
