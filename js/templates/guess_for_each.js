@@ -1,9 +1,10 @@
 import getElementFromTemplate from '../templating';
 import changeScreen from '../change_screen';
-import startOver from '../start_over';
+import renderAnswer from '../render_answer';
 import resizeImage from '../resize_image';
+import startOver from '../start_over';
 import gameStats from './game_stats';
-import header from './header';
+import header from './game_header';
 import game from '../game';
 
 const round = (data, state) => {
@@ -12,21 +13,7 @@ const round = (data, state) => {
     <div class="game">
       <p class="game__task">${data.task}</p>
       <form class="game__content">
-      ${
-        data.option.map((opt) => {
-          return `<div class="game__option">
-            <img src="${opt.img}" alt="Option 1" class="js-image">
-            ${
-              opt.answers.map((answer) => {
-                return `<label class="game__answer game__answer--${answer.value} js-answer">
-                  <input name="${answer.name}" type="radio" value="${answer.value}">
-                  <span>${answer.description}</span>
-                </label>`;
-              }).join(``)
-            }
-          </div>`;
-        }).join(``)
-      }
+        ${renderAnswer(data.option)}
       </form>
       ${gameStats(state)}
     </div>
@@ -38,7 +25,7 @@ const round = (data, state) => {
   for (let answer of answers) {
     answer.addEventListener(`change`, function (e) {
       if ([...document.querySelectorAll(`input[type="radio"]:checked`)].length === 2) {
-        game[state.currentRound + 1].type(game[state.currentRound + 1], state);
+        game[state.currentRound + 1].render(game[state.currentRound + 1], state);
       }
     });
   }

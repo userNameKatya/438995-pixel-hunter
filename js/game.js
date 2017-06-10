@@ -1,11 +1,11 @@
-import findOne from './templates/find-one.js';
-import guessForOne from './templates/guess-for-one.js';
-import guessForEach from './templates/guess-for-each.js';
+import findOne from './templates/find_one.js';
+import guessForOne from './templates/guess_for_one.js';
+import guessForEach from './templates/guess_for_each.js';
 
 const descriptionGame = [
   {
     task: `Угадайте для каждого изображения фото или рисунок?`,
-    type: guessForEach,
+    render: guessForEach,
     option: [
       {
         img: `https://k42.kn3.net/CF42609C8.jpg`,
@@ -45,7 +45,7 @@ const descriptionGame = [
   },
   {
     task: `Угадай, фото или рисунок?`,
-    type: guessForOne,
+    render: guessForOne,
     option: [
       {
         img: `https://k42.kn3.net/D2F0370D6.jpg`,
@@ -68,7 +68,7 @@ const descriptionGame = [
   },
   {
     task: `Найдите рисунок среди изображений?`,
-    type: findOne,
+    render: findOne,
     option: [
       {
         img: `https://k32.kn3.net/5C7060EC5.jpg`,

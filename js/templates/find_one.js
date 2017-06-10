@@ -1,9 +1,9 @@
 import getElementFromTemplate from '../templating';
 import changeScreen from '../change_screen';
+import resizeImage from '../resize_image';
 import startOver from '../start_over';
 import gameStats from './game_stats';
-import resizeImage from '../resize_image';
-import header from './header';
+import header from './game_header';
 import stats from './stats';
 
 const round = (data, state) => {
@@ -30,7 +30,7 @@ const round = (data, state) => {
   for (let answer of answers) {
     answer.addEventListener(`click`, function (e) {
       e.preventDefault();
-      stats();
+      stats(state);
     });
   }
 

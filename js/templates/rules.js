@@ -1,18 +1,14 @@
+import startOverTemplate from './start_over_template';
 import getElementFromTemplate from '../templating';
 import changeScreen from '../change_screen';
-import startOver from '../start_over';
 import initialState from '../initial_state';
+import startOver from '../start_over';
 import game from '../game';
 
 const rules = () => {
   const element = getElementFromTemplate(`
     <header class="header">
-      <div class="header__back js-start-over">
-        <span class="back">
-          <img src="img/arrow_left.svg" width="45" height="45" alt="Back">
-          <img src="img/logo_small.png" width="101" height="44">
-        </span>
-      </div>
+      ${startOverTemplate}
     </header>
     <div class="rules">
       <h1 class="rules__title">Правила</h1>
@@ -44,7 +40,7 @@ const rules = () => {
   form.addEventListener(`submit`, function (e) {
     e.preventDefault();
     // Ajax
-    game[initialState.currentRound].type(game[initialState.currentRound], initialState);
+    game[initialState.currentRound].render(game[initialState.currentRound], initialState);
   });
 
   changeScreen(cloneElement);
