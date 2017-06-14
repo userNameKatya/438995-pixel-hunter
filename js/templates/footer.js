@@ -1,4 +1,4 @@
-import getElementFromTemplate from '../templating';
+import getElementFromTemplate from '../utils/templating';
 
 const element = getElementFromTemplate(`
   <footer class="footer">

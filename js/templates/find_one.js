@@ -1,7 +1,9 @@
-import getElementFromTemplate from '../templating';
-import changeScreen from '../change_screen';
-import resizeImage from '../resize_image';
-import startOver from '../start_over';
+import getElementFromTemplate from '../utils/templating';
+import {setCurrentState} from '../utils/set_current_state';
+import {timer, timerId, time} from '../utils/timer';
+import changeScreen from '../utils/change_screen';
+import resizeImage from '../utils/resize_image';
+import startOver from '../utils/start_over';
 import gameStats from './game_stats';
 import header from './game_header';
 import stats from './stats';
@@ -29,13 +31,23 @@ const round = (data, state) => {
 
   for (let answer of answers) {
     answer.addEventListener(`click`, function (e) {
-      e.preventDefault();
-      stats(state);
+      clearInterval(timerId);
+      const src = e.target.querySelector(`img`).src;
+      let trueAnswer = false;
+
+      for (const it of data.option) {
+        if (it.img === src && it.answers[0].trueAnswer) {
+          trueAnswer = true;
+        }
+      }
+
+      stats(setCurrentState(state, trueAnswer, time));
     });
   }
 
   resizeImage(cloneElement);
   changeScreen(cloneElement);
+  timer();
   startOver();
 };
 

@@ -1,6 +1,6 @@
-import findOne from './templates/find_one.js';
-import guessForOne from './templates/guess_for_one.js';
-import guessForEach from './templates/guess_for_each.js';
+import findOne from '../templates/find_one.js';
+import guessForOne from '../templates/guess_for_one.js';
+import guessForEach from '../templates/guess_for_each.js';
 
 const descriptionGame = [
   {

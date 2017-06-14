@@ -2,7 +2,8 @@ const setLivesCount = (state, answer) => {
   if (answer) {
     return {lives: state.lives};
   } else {
-    return {lives: state.lives - 1 >= 0 ? state.lives - 1 : 0};
+    const newLivesCount = state.lives - 1;
+    return {lives: Math.max(newLivesCount, 0)};
   }
 };
 
@@ -41,4 +42,4 @@ const setCurrentState = (state, answer, time) => {
   return currentState;
 };
 
-export default setCurrentState;
+export {setCurrentState, setLivesCount, setRound, setGameStats};

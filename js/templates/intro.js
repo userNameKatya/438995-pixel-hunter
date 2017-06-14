@@ -1,5 +1,5 @@
-import getElementFromTemplate from '../templating';
-import changeScreen from '../change_screen';
+import getElementFromTemplate from '../utils/templating';
+import changeScreen from '../utils/change_screen';
 import greeting from './greeting';
 
 const intro = () => {
