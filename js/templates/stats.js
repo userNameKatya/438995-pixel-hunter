@@ -1,7 +1,7 @@
 import startOverTemplate from './start_over_template';
-import getElementFromTemplate from '../templating';
-import changeScreen from '../change_screen';
-import startOver from '../start_over';
+import getElementFromTemplate from '../utils/templating';
+import changeScreen from '../utils/change_screen';
+import startOver from '../utils/start_over';
 
 const stats = (data) => {
   const countQuantity = (array, value) => {

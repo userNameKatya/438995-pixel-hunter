@@ -1,9 +1,9 @@
 import startOverTemplate from './start_over_template';
-import getElementFromTemplate from '../templating';
-import changeScreen from '../change_screen';
-import initialState from '../initial_state';
-import startOver from '../start_over';
-import game from '../game';
+import getElementFromTemplate from '../utils/templating';
+import changeScreen from '../utils/change_screen';
+import initialState from '../data/initial_state';
+import startOver from '../utils/start_over';
+import game from '../data/data-game';
 
 const rules = () => {
   const element = getElementFromTemplate(`

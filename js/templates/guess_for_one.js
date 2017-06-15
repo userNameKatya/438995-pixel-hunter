@@ -1,11 +1,14 @@
-import getElementFromTemplate from '../templating';
-import changeScreen from '../change_screen';
-import renderAnswer from '../render_answer';
-import resizeImage from '../resize_image';
-import startOver from '../start_over';
+import getCorrectAnswer from '../utils/get_correct_answer';
+import {setCurrentState} from '../utils/set_current_state';
+import getElementFromTemplate from '../utils/templating';
+import {timer, timerId, time} from '../utils/timer';
+import changeScreen from '../utils/change_screen';
+import renderAnswer from '../utils/render_answer';
+import resizeImage from '../utils/resize_image';
+import startOver from '../utils/start_over';
+import game from '../data/data-game';
 import gameStats from './game_stats';
 import header from './game_header';
-import game from '../game';
 
 const round = (data, state) => {
   const element = getElementFromTemplate(`
@@ -23,14 +26,16 @@ const round = (data, state) => {
   const answers = [...cloneElement.querySelectorAll(`.js-answer`)];
 
   for (let answer of answers) {
-    answer.addEventListener(`click`, function (e) {
-      e.preventDefault();
-      game[state.currentRound + 2].render(game[state.currentRound + 2], state);
+    answer.addEventListener(`change`, function () {
+      clearInterval(timerId);
+      const currentState = setCurrentState(state, getCorrectAnswer(data), time);
+      game[currentState.currentRound].render(game[currentState.currentRound], currentState);
     });
   }
 
   resizeImage(cloneElement);
   changeScreen(cloneElement);
+  timer();
   startOver();
 };
 

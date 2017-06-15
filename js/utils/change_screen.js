@@ -1,4 +1,4 @@
-import footer from './templates/footer';
+import footer from '../templates/footer';
 
 const mainScreen = document.querySelector(`.js-main-screen`);
 

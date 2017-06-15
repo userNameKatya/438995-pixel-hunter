@@ -3,7 +3,7 @@ import startOverTemplate from './start_over_template';
 const header = (data) => {
   const element = `<header class="header">
     ${startOverTemplate}
-    <h1 class="game__timer">${data.time}</h1>
+    <h1 class="game__timer js-timer">${data.time}</h1>
     <div class="game__lives">
       ${
         new Array(3 - data.lives)
