@@ -1,3 +1,4 @@
+import {AnswerValues} from './constants';
 import findOne from '../templates/find_one.js';
 import guessForOne from '../templates/guess_for_one.js';
 import guessForEach from '../templates/guess_for_each.js';
@@ -12,14 +13,14 @@ const descriptionGame = [
         answers: [
           {
             name: `option1`,
-            value: `photo`,
-            description: `Фото`,
+            value: AnswerValues.PHOTO.value,
+            description: AnswerValues.PHOTO.description,
             trueAnswer: false
           },
           {
             name: `option1`,
-            value: `paint`,
-            description: `Рисунок`,
+            value: AnswerValues.PAINT.value,
+            description: AnswerValues.PAINT.description,
             trueAnswer: true
           }
         ]
@@ -29,14 +30,14 @@ const descriptionGame = [
         answers: [
           {
             name: `option2`,
-            value: `photo`,
-            description: `Фото`,
+            value: AnswerValues.PHOTO.value,
+            description: AnswerValues.PHOTO.description,
             trueAnswer: true
           },
           {
             name: `option2`,
-            value: `paint`,
-            description: `Рисунок`,
+            value: AnswerValues.PAINT.value,
+            description: AnswerValues.PAINT.description,
             trueAnswer: false
           }
         ]
@@ -52,14 +53,14 @@ const descriptionGame = [
         answers: [
           {
             name: `option1`,
-            value: `photo`,
-            description: `Фото`,
+            value: AnswerValues.PHOTO.value,
+            description: AnswerValues.PHOTO.description,
             trueAnswer: false
           },
           {
             name: `option1`,
-            value: `paint`,
-            description: `Рисунок`,
+            value: AnswerValues.PAINT.value,
+            description: AnswerValues.PAINT.description,
             trueAnswer: true
           }
         ]
@@ -75,8 +76,8 @@ const descriptionGame = [
         answers: [
           {
             name: `option1`,
-            value: `paint`,
-            description: `Рисунок`,
+            value: AnswerValues.PAINT.value,
+            description: AnswerValues.PAINT.description,
             trueAnswer: true
           }
         ]
@@ -86,8 +87,8 @@ const descriptionGame = [
         answers: [
           {
             name: `option1`,
-            value: `photo`,
-            description: `Фото`,
+            value: AnswerValues.PHOTO.value,
+            description: AnswerValues.PHOTO.description,
             trueAnswer: false
           }
         ]
@@ -97,8 +98,8 @@ const descriptionGame = [
         answers: [
           {
             name: `option1`,
-            value: `photo`,
-            description: `Фото`,
+            value: AnswerValues.PHOTO.value,
+            description: AnswerValues.PHOTO.description,
             trueAnswer: false
           }
         ]

@@ -1,3 +1,5 @@
+import {AnswersDescribe} from '../data/constants';
+
 const setLivesCount = (state, answer) => {
   if (answer) {
     return {lives: state.lives};
@@ -21,14 +23,14 @@ const setGameStats = (state, answer, time) => {
     const timePassed = state.time - time;
 
     if (timePassed < 10) {
-      answerDescribe = `fast`;
+      answerDescribe = AnswersDescribe.FAST;
     } else if (timePassed > 20) {
-      answerDescribe = `slow`;
+      answerDescribe = AnswersDescribe.SLOW;
     } else {
-      answerDescribe = `correct`;
+      answerDescribe = AnswersDescribe.CORRECT;
     }
   } else {
-    answerDescribe = `wrong`;
+    answerDescribe = AnswersDescribe.WRONG;
   }
 
   newGameStats.push(answerDescribe);
