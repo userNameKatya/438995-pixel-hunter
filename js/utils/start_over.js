@@ -1,7 +1,7 @@
 import intro from '../templates/intro';
 
-const startOver = () => {
-  const startOverBtn = document.querySelector(`.js-start-over`);
+const startOver = (elem) => {
+  const startOverBtn = elem.querySelector(`.js-start-over`) || document.querySelector(`.js-start-over`);
 
   startOverBtn.addEventListener(`click`, function (e) {
     intro();
