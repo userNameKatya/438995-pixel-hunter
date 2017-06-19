@@ -37,15 +37,17 @@ class GuessForEachView extends AbstractView {
     const answers = [...elem.querySelectorAll(`.js-answer`)];
 
     for (const answer of answers) {
-      answer.addEventListener(`change`, function () {
+      answer.addEventListener(`change`, () => {
         const answersGiven = document.querySelectorAll(`input[type="radio"]:checked`);
 
         if ([...answersGiven].length === answers.length / 2) {
-          // Как-то передать presenter`у, что даны ответы.
+          this.onAnswer();
         }
       });
     }
   }
+
+  onAnswer() {}
 }
 
 export default GuessForEachView;

@@ -1,5 +1,5 @@
-import startOverTemplate from '../start_over_template';
-import startOver from '../utils/start_over';
+import startOverTemplate from '../templates/start_over_template';
+import restart from '../utils/restart';
 import AbstractView from './abstract_view';
 import footer from '../templates/footer';
 
@@ -95,7 +95,7 @@ class StatsView extends AbstractView {
   }
 
   bind(elem) {
-    startOver(elem);
+    restart(elem);
   }
 }
 

@@ -1,12 +1,13 @@
 class AbstractView {
   constructor(data, state) {
+    this.view = null;
+
     if (data) {
       this.data = data;
     }
     if (state) {
       this.state = state;
     }
-    return this.element;
   }
 
   get template() {
@@ -34,7 +35,7 @@ class AbstractView {
   }
 
   getMarkup() {
-    if (this.view === `undefined`) {
+    if (this.view === null) {
       this.view = this.render();
     }
     return this.view.cloneNode(true);

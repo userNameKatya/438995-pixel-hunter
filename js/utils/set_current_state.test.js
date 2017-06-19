@@ -41,7 +41,7 @@ describe(`setCurrentState`, () => {
     });
 
     it(`not transferred to a higher level possible`, function () {
-      const lastRoundState = Object.assign({}, state, {currentRound: 9});
+      const lastRoundState = Object.assign({}, state, {currentRound: 10});
 
       assert.equal(setRound(lastRoundState).currentRound, lastRoundState.currentRound);
     });

@@ -7,4 +7,4 @@ intro.next = () => {
   changeView(greeting());
 };
 
-export default () => intro;
+export default () => intro.element;

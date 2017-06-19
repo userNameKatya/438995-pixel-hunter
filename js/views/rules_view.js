@@ -1,6 +1,7 @@
-import AbstractView from './abstract_view';
 import startOverTemplate from '../templates/start_over_template';
+import AbstractView from './abstract_view';
 import footer from '../templates/footer';
+import restart from '../utils/restart';
 
 class RulesView extends AbstractView {
   get template() {
@@ -19,7 +20,7 @@ class RulesView extends AbstractView {
         Готовы?
       </p>
       <form class="rules__form js-form">
-        <input class="rules__input js-input" type="text" placeholder="Ваше Имя">
+        <input class="rules__input js-input" type="text" placeholder="Ваше Имя" autofocus>
         <button class="rules__button continue js-submit-btn" type="submit" disabled>Go!</button>
       </form>
     </div>
@@ -27,18 +28,25 @@ class RulesView extends AbstractView {
   }
 
   bind(elem) {
+    restart(elem, this);
+
     const submitBtn = elem.querySelector(`.js-submit-btn`);
     const input = elem.querySelector(`.js-input`);
     const form = elem.querySelector(`.js-form`);
 
-    input.addEventListener(`input`, function (e) {
+    input.addEventListener(`input`, (e) => {
       submitBtn.disabled = e.target.value.length === 0;
     });
 
-    form.addEventListener(`submit`, function (e) {
+    form.addEventListener(`submit`, (e) => {
       e.preventDefault();
+      this.onStart();
     });
   }
+
+  onStart() {}
+
+  restart() {}
 }
 
 export default RulesView;
