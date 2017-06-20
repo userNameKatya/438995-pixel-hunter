@@ -1,19 +1,34 @@
-const getCorrectAnswer = function (data) {
-  const answersGiven = [...document.querySelectorAll(`input[type="radio"]:checked`)];
+import {RoundType} from '../data/constants';
 
-  let trueAnswersCount = 0;
+const getCorrectAnswer = function (data, userAnswers) {
+  let trueAnswer = false;
 
-  for (const it of answersGiven) {
-    const index = Number(it.name.replace(/\D+/ig, ``)) - 1;
-    const [firstOption, secondOption] = data.option[index].answers;
-    const trueAnswer = firstOption.trueAnswer ? firstOption : secondOption;
+  switch (data.type) {
+    case RoundType.FIND:
+      let trueAnswersCount = 0;
 
-    if (trueAnswer.name === it.name && trueAnswer.value === it.value) {
-      ++trueAnswersCount;
-    }
+      for (const it of userAnswers) {
+        const index = Number(it.name.replace(/\D+/ig, ``)) - 1;
+        const [firstOption, secondOption] = data.option[index].answers;
+        const currentTrueAnswer = firstOption.trueAnswer ? firstOption : secondOption;
+
+        if (currentTrueAnswer.name === it.name && currentTrueAnswer.value === it.value) {
+          ++trueAnswersCount;
+        }
+      }
+
+      trueAnswer = userAnswers.length === trueAnswersCount;
+      break;
+    case RoundType.GUESS:
+      for (const it of data.option) {
+        if (it.img === userAnswers && it.answers[0].trueAnswer) {
+          trueAnswer = true;
+        }
+      }
+      break;
   }
 
-  return answersGiven.length === trueAnswersCount;
+  return trueAnswer;
 };
 
 export default getCorrectAnswer;

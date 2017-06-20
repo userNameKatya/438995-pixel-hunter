@@ -1,8 +1,10 @@
+import {timer, timerId, time} from '../utils/timer';
 import gameStats from '../templates/game_stats';
 import resizeImage from '../utils/resize_image';
 import header from '../templates/game_header';
 import AbstractView from './abstract_view';
 import footer from '../templates/footer';
+import restart from '../utils/restart';
 
 class FindByTypeView extends AbstractView {
   get template() {
@@ -25,24 +27,24 @@ class FindByTypeView extends AbstractView {
 
   bind(elem) {
     resizeImage(elem);
+    restart(elem, this);
+    timer(elem, this);
 
     const answers = [...elem.querySelectorAll(`.js-answer`)];
 
     for (let answer of answers) {
       answer.addEventListener(`click`, (e) => {
         const src = e.target.querySelector(`img`).src;
-        let trueAnswer = false;
+        clearInterval(timerId);
 
-        for (const it of this.data.option) {
-          if (it.img === src && it.answers[0].trueAnswer) {
-            trueAnswer = true;
-          }
-        }
-
-        return trueAnswer;
+        this.onAnswer(src, time);
       });
     }
   }
+
+  onAnswer() {}
+
+  restart() {}
 }
 
 export default FindByTypeView;

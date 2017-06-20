@@ -1,19 +1,17 @@
-import dataGame from '../data/data_game';
-import EndGame from '../views/stats_view';
-import {RoundType} from '../data/constants';
+import {setCurrentState} from '../utils/set_current_state';
+import getCorrectAnswer from '../utils/get_correct_answer';
+import FindByTypeView from '../views/find_by_type';
+import GuessTypeView from '../views/guess_type';
 import changeView from '../utils/change_view';
-import GuessTypeView from '../views/guess_type_view';
-import FindByTypeView from '../views/find_by_type_view';
-// import getCorrectAnswer from '../utils/get_correct_answer';
-// import {setCurrentState} from '../utils/set_current_state';
+import {RoundType} from '../data/constants';
+import dataGame from '../data/data_game';
+import intro from '../presenter/intro';
+import EndGame from '../views/stats';
 
 class Game {
   constructor(state) {
-    this.state = state;
-    this.roundDate = dataGame[state.currentRound];
-    this.roundType = this.roundDate.type;
-
-    changeView(this.view);
+    this.setDataNewRound(state);
+    this.setNewRound();
   }
 
   get view() {
@@ -21,52 +19,38 @@ class Game {
     if (this.state.lives === 0 || this.state.currentRound === this.state.totalRounds) {
       view = new EndGame(this.state);
     } else {
-      switch (this.roundType) {
+      switch (this.roundDate.type) {
         case RoundType.FIND:
-          view = new GuessTypeView(this.dataRound, this.state);
+          view = new GuessTypeView(this.roundDate, this.state);
           break;
         case RoundType.GUESS:
-          view = new FindByTypeView(this.dataRound, this.state);
+          view = new FindByTypeView(this.roundDate, this.state);
           break;
       }
     }
     return view;
   }
-}
 
-/* let view;
-let dataRound;
-let roundType;
-
-const game = (state) => {
-  switchRound(state);
-
-  view.onAnswer = () => {
-    if (roundType === RoundType.FIND) {
-      let newState = setCurrentState(state, getCorrectAnswer(dataRound));
-      switchRound(newState);
-    }
-  };
-};
-
-const switchRound = (state) => {
-  dataRound = dataGame[state.currentRound];
-  roundType = dataRound.type;
-
-  if (state.lives === 0 || state.currentRound === state.totalRounds) {
-    view = new EndGame();
-  } else {
-    switch (roundType) {
-      case RoundType.FIND:
-        view = new GuessTypeView(dataRound, state);
-        break;
-      case RoundType.GUESS:
-        view = new FindByTypeView(dataRound, state);
-        break;
-    }
+  setDataNewRound(state) {
+    this.state = state;
+    this.roundDate = dataGame[this.state.currentRound];
   }
 
-  changeView(view.element);
-};*/
+  setNewRound() {
+    let view = this.view;
+
+    view.onAnswer = (answers, time) => {
+      let correctAnswer = answers !== null ? getCorrectAnswer(this.roundDate, answers) : false;
+      this.setDataNewRound(setCurrentState(this.state, correctAnswer, time));
+      this.setNewRound();
+    };
+
+    view.restart = () => {
+      changeView(intro());
+    };
+
+    changeView(view.element);
+  }
+}
 
 export default Game;

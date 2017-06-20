@@ -1,7 +1,7 @@
 import startOverTemplate from '../templates/start_over_template';
-import restart from '../utils/restart';
 import AbstractView from './abstract_view';
 import footer from '../templates/footer';
+import restart from '../utils/restart';
 
 class StatsView extends AbstractView {
   get template() {
@@ -22,7 +22,7 @@ class StatsView extends AbstractView {
       ${startOverTemplate}
     </header>
     <div class="result">
-      <h1>Победа!</h1>
+      <h1>${this.data.lives > 0 ? `Победа!` : `Поражение`}</h1>
       <table class="result__table">
         <tr>
           <td class="result__number">1.</td>
@@ -69,33 +69,12 @@ class StatsView extends AbstractView {
             </tr>` : ``
         }
       </table>
-      <table class="result__table">
-        <tr>
-          <td class="result__number">2.</td>
-          <td>
-            <ul class="stats">
-              <li class="stats__result stats__result--wrong"></li>
-              <li class="stats__result stats__result--slow"></li>
-              <li class="stats__result stats__result--fast"></li>
-              <li class="stats__result stats__result--correct"></li>
-              <li class="stats__result stats__result--wrong"></li>
-              <li class="stats__result stats__result--unknown"></li>
-              <li class="stats__result stats__result--slow"></li>
-              <li class="stats__result stats__result--wrong"></li>
-              <li class="stats__result stats__result--fast"></li>
-              <li class="stats__result stats__result--wrong"></li>
-            </ul>
-          </td>
-          <td class="result__total"></td>
-          <td class="result__total  result__total--final">fail</td>
-        </tr>
-      </table>
     </div>
     ${footer}`;
   }
 
   bind(elem) {
-    restart(elem);
+    restart(elem, this);
   }
 }
 

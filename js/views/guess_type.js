@@ -1,8 +1,10 @@
+import {timer, timerId, time} from '../utils/timer';
 import gameStats from '../templates/game_stats';
 import resizeImage from '../utils/resize_image';
 import header from '../templates/game_header';
 import AbstractView from './abstract_view';
 import footer from '../templates/footer';
+import restart from '../utils/restart';
 
 class GuessForEachView extends AbstractView {
   get template() {
@@ -33,6 +35,8 @@ class GuessForEachView extends AbstractView {
 
   bind(elem) {
     resizeImage(elem);
+    restart(elem, this);
+    timer(elem, this);
 
     const answers = [...elem.querySelectorAll(`.js-answer`)];
 
@@ -41,13 +45,16 @@ class GuessForEachView extends AbstractView {
         const answersGiven = document.querySelectorAll(`input[type="radio"]:checked`);
 
         if ([...answersGiven].length === answers.length / 2) {
-          this.onAnswer();
+          clearInterval(timerId);
+          this.onAnswer([...answersGiven], time);
         }
       });
     }
   }
 
   onAnswer() {}
+
+  restart() {}
 }
 
 export default GuessForEachView;
