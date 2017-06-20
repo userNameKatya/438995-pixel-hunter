@@ -1,7 +1,9 @@
+import descriptionGame from './data_game';
+
 const initialState = {
   time: 30,
   lives: 3,
-  totalRounds: 10,
+  totalRounds: descriptionGame.length,
   currentRound: 0,
   gameStats: []
 };

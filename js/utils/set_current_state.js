@@ -10,7 +10,7 @@ const setLivesCount = (state, answer) => {
 };
 
 const setRound = (state) => {
-  const round = state.currentRound + 1 < state.totalRounds ? state.currentRound + 1 : state.totalRounds - 1;
+  const round = state.currentRound + 1 < state.totalRounds ? state.currentRound + 1 : state.totalRounds;
 
   return {currentRound: round};
 };

@@ -16,4 +16,9 @@ const AnswerValues = {
   }
 };
 
-export {AnswersDescribe, AnswerValues};
+const RoundType = {
+  FIND: 1,
+  GUESS: 2
+};
+
+export {AnswersDescribe, AnswerValues, RoundType};

@@ -1,10 +1,9 @@
-import getElementFromTemplate from '../utils/templating';
-import changeScreen from '../utils/change_screen';
-import rules from './rules';
+import AbstractView from './abstract_view';
+import footer from '../templates/footer';
 
-const greeting = () => {
-  const element = getElementFromTemplate(`
-    <div class="greeting central--blur">
+class GreetingView extends AbstractView {
+  get template() {
+    return `<div class="greeting central--blur">
       <div class="greeting__logo"><img src="img/logo_big.png" width="201" height="89" alt="Pixel Hunter"></div>
       <h1 class="greeting__asterisk">*</h1>
       <div class="greeting__challenge">
@@ -17,16 +16,8 @@ const greeting = () => {
       </div>
       <div class="greeting__continue js-next-screen"><span><img src="img/arrow_right.svg" width="64" height="64" alt="Next"></span></div>
     </div>
-  `);
+    ${footer}`;
+  }
+}
 
-  const cloneElement = element.cloneNode(true);
-  const nextScreenBtn = cloneElement.querySelector(`.js-next-screen`);
-
-  nextScreenBtn.addEventListener(`click`, function (e) {
-    rules();
-  });
-
-  changeScreen(cloneElement);
-};
-
-export default greeting;
+export default GreetingView;
