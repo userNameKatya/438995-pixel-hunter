@@ -1,4 +1,5 @@
 import startOverTemplate from '../templates/start_over_template';
+import {AnswersDescribe} from '../data/constants';
 import AbstractView from './abstract_view';
 import footer from '../templates/footer';
 import restart from '../utils/restart';
@@ -11,9 +12,9 @@ class StatsView extends AbstractView {
       }, 0);
     };
 
-    const fastCount = countQuantity(this.data.gameStats, `fast`);
-    const slowCount = countQuantity(this.data.gameStats, `slow`);
-    const answerBonus = (countQuantity(this.data.gameStats, `correct`) + fastCount + slowCount) * 100;
+    const fastCount = countQuantity(this.data.gameStats, AnswersDescribe.FAST);
+    const slowCount = countQuantity(this.data.gameStats, AnswersDescribe.SLOW);
+    const answerBonus = (countQuantity(this.data.gameStats, AnswersDescribe.CORRECT) + fastCount + slowCount) * 100;
     const livesBonus = this.data.lives * 50;
     const fastBonus = fastCount * 50;
     const fine = slowCount * 50;

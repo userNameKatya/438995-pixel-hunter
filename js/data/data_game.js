@@ -1,9 +1,9 @@
-import {AnswerValues} from './constants';
+import {AnswerValues, RoundType} from './constants';
 
 const descriptionGame = [
   {
     task: `Угадайте для каждого изображения фото или рисунок?`,
-    type: 1,
+    type: RoundType.FIND,
     option: [
       {
         img: `https://k42.kn3.net/CF42609C8.jpg`,
@@ -43,7 +43,7 @@ const descriptionGame = [
   },
   {
     task: `Угадай, фото или рисунок?`,
-    type: 1,
+    type: RoundType.FIND,
     option: [
       {
         img: `https://k42.kn3.net/D2F0370D6.jpg`,
@@ -66,7 +66,7 @@ const descriptionGame = [
   },
   {
     task: `Найдите рисунок среди изображений?`,
-    type: 2,
+    type: RoundType.GUESS,
     option: [
       {
         img: `https://k32.kn3.net/5C7060EC5.jpg`,

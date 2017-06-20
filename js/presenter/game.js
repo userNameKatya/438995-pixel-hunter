@@ -19,12 +19,12 @@ class Game {
     if (this.state.lives === 0 || this.state.currentRound === this.state.totalRounds) {
       view = new EndGame(this.state);
     } else {
-      switch (this.roundDate.type) {
+      switch (this.roundData.type) {
         case RoundType.FIND:
-          view = new GuessTypeView(this.roundDate, this.state);
+          view = new GuessTypeView(this.roundData, this.state);
           break;
         case RoundType.GUESS:
-          view = new FindByTypeView(this.roundDate, this.state);
+          view = new FindByTypeView(this.roundData, this.state);
           break;
       }
     }
@@ -33,14 +33,14 @@ class Game {
 
   setDataNewRound(state) {
     this.state = state;
-    this.roundDate = dataGame[this.state.currentRound];
+    this.roundData = dataGame[this.state.currentRound];
   }
 
   setNewRound() {
     let view = this.view;
 
     view.onAnswer = (answers, time) => {
-      let correctAnswer = answers !== null ? getCorrectAnswer(this.roundDate, answers) : false;
+      let correctAnswer = answers !== null ? getCorrectAnswer(this.roundData, answers) : false;
       this.setDataNewRound(setCurrentState(this.state, correctAnswer, time));
       this.setNewRound();
     };
