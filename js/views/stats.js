@@ -1,4 +1,5 @@
 import startOverTemplate from '../templates/start_over_template';
+import Application from '../presenter/application';
 import {AnswersDescribe} from '../data/constants';
 import AbstractView from './abstract_view';
 import footer from '../templates/footer';
@@ -76,6 +77,10 @@ class StatsView extends AbstractView {
 
   bind(elem) {
     restart(elem, this);
+  }
+
+  restart() {
+    Application.showIntro();
   }
 }
 

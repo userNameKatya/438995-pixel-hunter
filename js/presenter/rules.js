@@ -4,13 +4,12 @@ import RulesView from '../views/rules';
 import intro from '../presenter/intro';
 import Game from '../presenter/game';
 
-const rules = new RulesView();
-rules.onStart = () => {
+RulesView.onStart = () => {
   return new Game(initialState);
 };
 
-rules.restart = () => {
+RulesView.restart = () => {
   changeView(intro());
 };
 
-export default () => rules.element;
+export default () => RulesView.element;

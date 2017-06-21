@@ -5,8 +5,7 @@ import GuessTypeView from '../views/guess_type';
 import changeView from '../utils/change_view';
 import {RoundType} from '../data/constants';
 import dataGame from '../data/data_game';
-import intro from '../presenter/intro';
-import EndGame from '../views/stats';
+import Application from './application';
 
 class GamePresenter {
   constructor(state) {
@@ -17,8 +16,8 @@ class GamePresenter {
   get view() {
     let view;
     if (this.state.lives === 0 || this.state.currentRound === this.state.totalRounds) {
-      this.endGame = true;
-      view = new EndGame(this.state);
+      Application.showState(this.state);
+      return false;
     } else {
       switch (this.roundData.type) {
         case RoundType.FIND:
@@ -36,7 +35,6 @@ class GamePresenter {
     this.state = state;
     this.roundData = dataGame[this.state.currentRound];
     this.time = this.state.time;
-    this.endGame = false;
     this.timerId = null;
   }
 
@@ -46,18 +44,20 @@ class GamePresenter {
     view.onAnswer = (answers) => {
       clearInterval(this.timerId);
       let correctAnswer = answers !== null ? getCorrectAnswer(this.roundData, answers) : false;
-      this.setDataNewRound(setCurrentState(this.state, correctAnswer, time));
+      this.setDataNewRound(setCurrentState(this.state, correctAnswer, this.time));
       this.setNewRound();
     };
 
     view.restart = () => {
-      clearInterval(this.timerId);
-      changeView(intro());
+      if (window.confirm(`Начать сначала?`)) {
+        clearInterval(this.timerId);
+        Application.showIntro();
+      }
     };
 
     changeView(view.element);
 
-    if (!this.endGame) {
+    if (view) {
       this.setTimer();
     }
   }
@@ -71,6 +71,9 @@ class GamePresenter {
         clearInterval(this.timerId);
         this.setDataNewRound(setCurrentState(this.state, false, this.time));
         this.setNewRound();
+      }
+      if (this.time === 5) {
+        timerContainer.classList.add(`warning`);
       }
       timerContainer.innerHTML = this.time;
     }, 1000);

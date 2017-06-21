@@ -1,4 +1,3 @@
-import intro from './presenter/intro';
-import changeView from './utils/change_view';
+import Application from './presenter/application';
 
-changeView(intro());
+Application.showIntro();

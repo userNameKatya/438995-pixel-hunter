@@ -1,3 +1,4 @@
+import Application from '../presenter/application';
 import AbstractView from './abstract_view';
 import footer from '../templates/footer';
 
@@ -18,6 +19,9 @@ class GreetingView extends AbstractView {
     </div>
     ${footer}`;
   }
+  next() {
+    Application.showRules();
+  }
 }
 
-export default GreetingView;
+export default new GreetingView();
