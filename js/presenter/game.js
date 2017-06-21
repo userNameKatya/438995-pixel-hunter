@@ -8,7 +8,7 @@ import dataGame from '../data/data_game';
 import intro from '../presenter/intro';
 import EndGame from '../views/stats';
 
-class Game {
+class GamePresenter {
   constructor(state) {
     this.setDataNewRound(state);
     this.setNewRound();
@@ -17,6 +17,7 @@ class Game {
   get view() {
     let view;
     if (this.state.lives === 0 || this.state.currentRound === this.state.totalRounds) {
+      this.endGame = true;
       view = new EndGame(this.state);
     } else {
       switch (this.roundData.type) {
@@ -34,23 +35,46 @@ class Game {
   setDataNewRound(state) {
     this.state = state;
     this.roundData = dataGame[this.state.currentRound];
+    this.time = this.state.time;
+    this.endGame = false;
+    this.timerId = null;
   }
 
   setNewRound() {
     let view = this.view;
 
-    view.onAnswer = (answers, time) => {
+    view.onAnswer = (answers) => {
+      clearInterval(this.timerId);
       let correctAnswer = answers !== null ? getCorrectAnswer(this.roundData, answers) : false;
       this.setDataNewRound(setCurrentState(this.state, correctAnswer, time));
       this.setNewRound();
     };
 
     view.restart = () => {
+      clearInterval(this.timerId);
       changeView(intro());
     };
 
     changeView(view.element);
+
+    if (!this.endGame) {
+      this.setTimer();
+    }
+  }
+
+  setTimer() {
+    const timerContainer = document.querySelector(`.js-timer`);
+
+    this.timerId = setInterval(() => {
+      --this.time;
+      if (this.time === 0) {
+        clearInterval(this.timerId);
+        this.setDataNewRound(setCurrentState(this.state, false, this.time));
+        this.setNewRound();
+      }
+      timerContainer.innerHTML = this.time;
+    }, 1000);
   }
 }
 
-export default Game;
+export default GamePresenter;

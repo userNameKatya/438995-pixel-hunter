@@ -1,4 +1,3 @@
-import {timer, timerId, time} from '../utils/timer';
 import gameStats from '../templates/game_stats';
 import resizeImage from '../utils/resize_image';
 import header from '../templates/game_header';
@@ -28,16 +27,14 @@ class FindByTypeView extends AbstractView {
   bind(elem) {
     resizeImage(elem);
     restart(elem, this);
-    timer(elem, this);
 
     const answers = [...elem.querySelectorAll(`.js-answer`)];
 
     for (let answer of answers) {
       answer.addEventListener(`click`, (e) => {
         const src = e.target.querySelector(`img`).src;
-        clearInterval(timerId);
 
-        this.onAnswer(src, time);
+        this.onAnswer(src);
       });
     }
   }
