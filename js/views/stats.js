@@ -77,6 +77,8 @@ class StatsView extends AbstractView {
   bind(elem) {
     restart(elem, this);
   }
+
+  restart() {}
 }
 
 export default StatsView;

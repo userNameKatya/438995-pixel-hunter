@@ -1,10 +1,9 @@
-import rules from '../presenter/rules';
+import Application from '../presenter/application';
 import GreetingView from '../views/greeting';
-import changeView from '../utils/change_view';
 
 const greeting = new GreetingView();
 greeting.next = () => {
-  changeView(rules());
+  Application.showRules();
 };
 
 export default () => greeting.element;

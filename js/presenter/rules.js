@@ -1,16 +1,13 @@
-import initialState from '../data/initial_state';
-import changeView from '../utils/change_view';
+import Application from '../presenter/application';
 import RulesView from '../views/rules';
-import intro from '../presenter/intro';
-import Game from '../presenter/game';
 
 const rules = new RulesView();
 rules.onStart = () => {
-  return new Game(initialState);
+  Application.showGame();
 };
 
 rules.restart = () => {
-  changeView(intro());
+  Application.showIntro();
 };
 
 export default () => rules.element;
