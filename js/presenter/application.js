@@ -1,22 +1,22 @@
 import initialState from '../data/initial_state';
 import changeView from '../utils/change_view';
-import Greeting from '../views/greeting';
+import greeting from '../presenter/greeting';
+import intro from '../presenter/intro';
+import rules from '../presenter/rules';
+import Stats from '../presenter/stats';
 import Game from '../presenter/game';
-import Stats from '../views/stats';
-import Intro from '../views/intro';
-import Rules from '../views/rules';
 
 export default class Application {
   static showIntro() {
-    changeView(Intro.element);
+    changeView(intro());
   }
 
   static showGreeting() {
-    changeView(Greeting.element);
+    changeView(greeting());
   }
 
   static showRules() {
-    changeView(Rules.element);
+    changeView(rules());
   }
 
   static showGame() {
@@ -24,7 +24,7 @@ export default class Application {
   }
 
   static showState(data) {
-    const GameStats = new Stats(data);
-    changeView(GameStats.element);
+    const state = new Stats(data);
+    changeView(state.view);
   }
 }

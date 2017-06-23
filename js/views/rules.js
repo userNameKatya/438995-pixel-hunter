@@ -1,5 +1,4 @@
 import startOverTemplate from '../templates/start_over_template';
-import Application from '../presenter/application';
 import AbstractView from './abstract_view';
 import footer from '../templates/footer';
 import restart from '../utils/restart';
@@ -45,13 +44,9 @@ class RulesView extends AbstractView {
     });
   }
 
-  onStart() {
-    Application.showGame();
-  }
+  onStart() {}
 
-  restart() {
-    Application.showIntro();
-  }
+  restart() {}
 }
 
-export default new RulesView();
+export default RulesView;

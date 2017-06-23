@@ -18,15 +18,14 @@ class GamePresenter {
     if (this.state.lives === 0 || this.state.currentRound === this.state.totalRounds) {
       Application.showState(this.state);
       return false;
-    } else {
-      switch (this.roundData.type) {
-        case RoundType.FIND:
-          view = new GuessTypeView(this.roundData, this.state);
-          break;
-        case RoundType.GUESS:
-          view = new FindByTypeView(this.roundData, this.state);
-          break;
-      }
+    }
+    switch (this.roundData.type) {
+      case RoundType.FIND:
+        view = new GuessTypeView(this.roundData, this.state);
+        break;
+      case RoundType.GUESS:
+        view = new FindByTypeView(this.roundData, this.state);
+        break;
     }
     return view;
   }
@@ -39,25 +38,23 @@ class GamePresenter {
   }
 
   setNewRound() {
-    let view = this.view;
-
-    view.onAnswer = (answers) => {
-      clearInterval(this.timerId);
-      let correctAnswer = answers !== null ? getCorrectAnswer(this.roundData, answers) : false;
-      this.setDataNewRound(setCurrentState(this.state, correctAnswer, this.time));
-      this.setNewRound();
-    };
-
-    view.restart = () => {
-      if (window.confirm(`Начать сначала?`)) {
-        clearInterval(this.timerId);
-        Application.showIntro();
-      }
-    };
-
-    changeView(view.element);
+    const view = this.view;
 
     if (view) {
+      view.onAnswer = (answers) => {
+        clearInterval(this.timerId);
+        const correctAnswer = answers !== null ? getCorrectAnswer(this.roundData, answers) : false;
+        this.setDataNewRound(setCurrentState(this.state, correctAnswer, this.time));
+        this.setNewRound();
+      };
+
+      view.restart = () => {
+        clearInterval(this.timerId);
+        Application.showIntro();
+      };
+
+      changeView(view.element);
+
       this.setTimer();
     }
   }
