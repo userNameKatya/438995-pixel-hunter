@@ -4,7 +4,7 @@ import StatsView from '../views/stats';
 
 export default class Stats {
   constructor(data) {
-    this.stats = data;
+    this.stats = JSON.parse(window.atob(data));
   }
 
   init() {

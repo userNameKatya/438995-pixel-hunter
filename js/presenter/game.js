@@ -16,7 +16,8 @@ class GamePresenter {
   get view() {
     let view;
     if (this.state.lives === 0 || this.state.currentRound === this.state.totalRounds) {
-      Application.showState(this.state);
+      const state = JSON.stringify(this.state);
+      Application.showState(window.btoa(state));
       return false;
     }
     switch (this.roundData.type) {

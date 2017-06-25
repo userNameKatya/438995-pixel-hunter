@@ -15,8 +15,6 @@ class Application {
       [ControllerId.STATS]: Stats
     };
 
-    this.state = initialState;
-
     window.onhashchange = () => {
       this.changeController(this.getControllerId(location.hash));
     };
@@ -35,21 +33,22 @@ class Application {
   }
 
   showGame() {
-    return new Game(this.state);
+    return new Game(initialState);
   }
 
-  showState(data) {
-    this.state = data;
-    location.hash = ControllerId.STATS;
+  showState(params) {
+    location.hash = `${ControllerId.STATS}=${params}`;
   }
 
   getControllerId(hash) {
-    return hash.replace(`#`, ``);
+    const params = hash.indexOf(`=`);
+    return [hash.substring(1, params > -1 ? params : hash.length), params > -1 ? hash.substring(params + 1) : ``];
   }
 
-  changeController(id = ``) {
+  changeController(array) {
+    const [id = ``, params = ``] = array;
     const Controller = this.routes[id];
-    new Controller(this.state).init();
+    new Controller(params).init();
   }
 
   init() {
