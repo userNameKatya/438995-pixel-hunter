@@ -8,8 +8,6 @@ export default class Greeting {
   }
 
   init() {
-    Application.showGreeting();
-
     this.view.next = () => {
       Application.showRules();
     };

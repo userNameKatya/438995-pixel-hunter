@@ -8,8 +8,6 @@ export default class Rules {
   }
 
   init() {
-    Application.showRules();
-
     this.view.onStart = () => {
       Application.showGame();
     };

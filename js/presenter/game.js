@@ -16,9 +16,8 @@ class GamePresenter {
   get view() {
     let view;
     if (this.state.lives === 0 || this.state.currentRound === this.state.totalRounds) {
-      const state = JSON.stringify(this.state);
-      Application.showState(window.btoa(state));
-      return false;
+      Application.showStats(this.state);
+      return null;
     }
     switch (this.roundData.type) {
       case RoundType.FIND:

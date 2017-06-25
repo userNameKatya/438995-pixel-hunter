@@ -8,8 +8,6 @@ export default class Intro {
   }
 
   init() {
-    Application.showIntro();
-
     this.view.next = () => {
       Application.showGreeting();
     };
