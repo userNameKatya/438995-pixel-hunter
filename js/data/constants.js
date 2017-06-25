@@ -21,4 +21,11 @@ const RoundType = {
   GUESS: 2
 };
 
-export {AnswersDescribe, AnswerValues, RoundType};
+const ControllerId = {
+  INTRO: ``,
+  GREETING: `greeting`,
+  GAME: `game`,
+  STATS: `stats`
+};
+
+export {AnswersDescribe, AnswerValues, RoundType, ControllerId};

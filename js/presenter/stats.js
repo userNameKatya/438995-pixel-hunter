@@ -1,20 +1,19 @@
 import Application from '../presenter/application';
+import changeView from '../utils/change_view';
 import StatsView from '../views/stats';
 
-class StatsPresenter {
-  constructor(state) {
-    this.state = state;
+export default class Stats {
+  constructor(data) {
+    this.stats = data;
   }
 
-  get view() {
-    const stats = new StatsView(this.state);
-    stats.restart = () => {
+  init() {
+    this.view = new StatsView(this.stats);
+
+    this.view.restart = () => {
       Application.showIntro();
     };
 
-    return stats.element;
+    changeView(this.view.element);
   }
 }
-
-
-export default StatsPresenter;
