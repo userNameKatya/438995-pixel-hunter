@@ -1,9 +1,17 @@
 import Application from '../presenter/application';
+import changeView from '../utils/change_view';
 import IntroView from '../views/intro';
 
-const intro = new IntroView();
-intro.next = () => {
-  Application.showGreeting();
-};
+export default class Intro {
+  constructor() {
+    this.view = new IntroView();
+  }
 
-export default () => intro.element;
+  init() {
+    this.view.next = () => {
+      Application.showGreeting();
+    };
+
+    changeView(this.view.element);
+  }
+}

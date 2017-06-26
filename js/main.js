@@ -1,3 +1,3 @@
 import Application from './presenter/application';
 
-Application.showIntro();
+Application.init();

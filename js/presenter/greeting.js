@@ -1,9 +1,17 @@
 import Application from '../presenter/application';
+import changeView from '../utils/change_view';
 import GreetingView from '../views/greeting';
 
-const greeting = new GreetingView();
-greeting.next = () => {
-  Application.showRules();
-};
+export default class Greeting {
+  constructor() {
+    this.view = new GreetingView();
+  }
 
-export default () => greeting.element;
+  init() {
+    this.view.next = () => {
+      Application.showRules();
+    };
+
+    changeView(this.view.element);
+  }
+}

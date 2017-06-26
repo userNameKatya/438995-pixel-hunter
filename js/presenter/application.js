@@ -1,30 +1,56 @@
 import initialState from '../data/initial_state';
-import changeView from '../utils/change_view';
-import greeting from '../presenter/greeting';
-import intro from '../presenter/intro';
-import rules from '../presenter/rules';
+import {ControllerId} from '../data/constants';
+import Greeting from '../presenter/greeting';
+import Adapter from '../utils/adapter';
+import Intro from '../presenter/intro';
+import Rules from '../presenter/rules';
 import Stats from '../presenter/stats';
 import Game from '../presenter/game';
 
-export default class Application {
-  static showIntro() {
-    changeView(intro());
+class Application {
+  constructor() {
+    this.routes = {
+      [ControllerId.INTRO]: Intro,
+      [ControllerId.GREETING]: Greeting,
+      [ControllerId.GAME]: Rules,
+      [ControllerId.STATS]: Stats
+    };
+
+    window.onhashchange = () => {
+      this.changeController();
+    };
   }
 
-  static showGreeting() {
-    changeView(greeting());
+  showIntro() {
+    location.hash = ControllerId.INTRO;
   }
 
-  static showRules() {
-    changeView(rules());
+  showGreeting() {
+    location.hash = ControllerId.GREETING;
   }
 
-  static showGame() {
+  showRules() {
+    location.hash = ControllerId.GAME;
+  }
+
+  showGame() {
     return new Game(initialState);
   }
 
-  static showState(data) {
-    const state = new Stats(data);
-    changeView(state.view);
+  showStats(data) {
+    location.hash = `${ControllerId.STATS}=${Adapter.encode(data)}`;
+  }
+
+  changeController() {
+    let [id = ``, params = ``] = location.hash.replace(`#`, ``).split(`=`);
+    params = params === `` ? params : Adapter.decode(params);
+    const Controller = this.routes[id];
+    new Controller(params).init();
+  }
+
+  init() {
+    this.changeController();
   }
 }
+
+export default new Application();
