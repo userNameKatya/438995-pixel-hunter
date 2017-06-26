@@ -4,13 +4,18 @@ import FindByTypeView from '../views/find_by_type';
 import GuessTypeView from '../views/guess_type';
 import changeView from '../utils/change_view';
 import {RoundType} from '../data/constants';
-import dataGame from '../data/data_game';
+import DataGame from '../model/data_game';
 import Application from './application';
 
 class GamePresenter {
   constructor(state) {
-    this.setDataNewRound(state);
-    this.setNewRound();
+    this.model = new DataGame();
+
+    this.model.ready = (data) => {
+      this.dataGame = data;
+      this.setDataNewRound(state);
+      this.setNewRound();
+    };
   }
 
   get view() {
@@ -32,7 +37,7 @@ class GamePresenter {
 
   setDataNewRound(state) {
     this.state = state;
-    this.roundData = dataGame[this.state.currentRound];
+    this.roundData = this.dataGame[this.state.currentRound];
     this.time = this.state.time;
     this.timerId = null;
   }

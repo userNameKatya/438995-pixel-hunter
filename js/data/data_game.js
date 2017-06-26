@@ -16,8 +16,8 @@ const descriptionGame = [
           },
           {
             name: `option1`,
-            value: AnswerValues.PAINT.value,
-            description: AnswerValues.PAINT.description,
+            value: AnswerValues.PAINTING.value,
+            description: AnswerValues.PAINTING.description,
             trueAnswer: true
           }
         ]
@@ -33,8 +33,8 @@ const descriptionGame = [
           },
           {
             name: `option2`,
-            value: AnswerValues.PAINT.value,
-            description: AnswerValues.PAINT.description,
+            value: AnswerValues.PAINTING.value,
+            description: AnswerValues.PAINTING.description,
             trueAnswer: false
           }
         ]
@@ -56,8 +56,8 @@ const descriptionGame = [
           },
           {
             name: `option1`,
-            value: AnswerValues.PAINT.value,
-            description: AnswerValues.PAINT.description,
+            value: AnswerValues.PAINTING.value,
+            description: AnswerValues.PAINTING.description,
             trueAnswer: true
           }
         ]
@@ -73,8 +73,8 @@ const descriptionGame = [
         answers: [
           {
             name: `option1`,
-            value: AnswerValues.PAINT.value,
-            description: AnswerValues.PAINT.description,
+            value: AnswerValues.PAINTING.value,
+            description: AnswerValues.PAINTING.description,
             trueAnswer: true
           }
         ]
