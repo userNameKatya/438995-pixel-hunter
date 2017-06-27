@@ -10,7 +10,7 @@ const AnswerValues = {
     value: `photo`,
     description: `Фото`
   },
-  PAINT: {
+  PAINTING: {
     value: `paint`,
     description: `Рисунок`
   }
@@ -28,4 +28,12 @@ const ControllerId = {
   STATS: `stats`
 };
 
-export {AnswersDescribe, AnswerValues, RoundType, ControllerId};
+const QuestionType = {
+  TWO_OF_TWO: `two-of-two`,
+  TINDER_LIKE: `tinder-like`,
+  ONE_OF_THREE: `one-of-three`
+};
+
+const DataUrl = `https://intensive-ecmascript-server-btfgudlkpi.now.sh/pixel-hunter/questions`;
+
+export {AnswersDescribe, AnswerValues, RoundType, ControllerId, DataUrl, QuestionType};
