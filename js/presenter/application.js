@@ -36,8 +36,8 @@ class Application {
     return new Game(state);
   }
 
-  showStats(data) {
-    location.hash = `${ControllerId.STATS}=${Adapter.encode(data)}`;
+  showStats(userName) {
+    location.hash = `${ControllerId.STATS}=${Adapter.encode(userName)}`;
   }
 
   changeController() {

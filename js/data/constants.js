@@ -34,7 +34,9 @@ const QuestionType = {
   ONE_OF_THREE: `one-of-three`
 };
 
+const TotalRounds = 10;
+
 const DataUrl = `https://intensive-ecmascript-server-btfgudlkpi.now.sh/pixel-hunter/questions`;
 const StatsUrl = `https://intensive-ecmascript-server-btfgudlkpi.now.sh/pixel-hunter/stats/`;
 
-export {AnswersDescribe, AnswerValues, RoundType, ControllerId, DataUrl, StatsUrl, QuestionType};
+export {AnswersDescribe, AnswerValues, RoundType, ControllerId, QuestionType, TotalRounds, DataUrl, StatsUrl};

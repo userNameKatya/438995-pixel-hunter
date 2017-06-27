@@ -1,10 +1,10 @@
 import {setCurrentState} from '../utils/set_current_state';
 import getCorrectAnswer from '../utils/get_correct_answer';
-import {StatsUrl} from '../data/constants';
 import FindByTypeView from '../views/find_by_type';
 import GuessTypeView from '../views/guess_type';
 import changeView from '../utils/change_view';
 import {RoundType} from '../data/constants';
+import StatsGame from '../model/stats_game';
 import DataGame from '../model/data_game';
 import Application from './application';
 
@@ -22,7 +22,10 @@ class GamePresenter {
   get view() {
     let view;
     if (this.state.lives === 0 || this.state.currentRound === this.state.totalRounds) {
-      this.sendState();
+      StatsGame.sendStats(this.state);
+      StatsGame.success = () => {
+        Application.showStats(this.state.userName);
+      };
       return null;
     }
     switch (this.roundData.type) {
@@ -80,20 +83,6 @@ class GamePresenter {
       }
       timerContainer.innerHTML = this.time;
     }, 1000);
-  }
-
-  sendState() {
-    fetch(`${StatsUrl}${this.state.userName}`, {method: `POST`})
-      .then((response) => {
-        if (response.status !== 200) {
-          throw new Error(response.status);
-        }
-
-        Application.showStats(this.state);
-      })
-      .catch((error) => {
-        throw new Error(error);
-      });
   }
 }
 
