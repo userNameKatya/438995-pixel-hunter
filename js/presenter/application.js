@@ -1,4 +1,3 @@
-import initialState from '../data/initial_state';
 import {ControllerId} from '../data/constants';
 import Greeting from '../presenter/greeting';
 import Adapter from '../utils/adapter';
@@ -33,8 +32,8 @@ class Application {
     location.hash = ControllerId.GAME;
   }
 
-  showGame() {
-    return new Game(initialState);
+  showGame(state) {
+    return new Game(state);
   }
 
   showStats(data) {
