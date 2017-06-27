@@ -1,4 +1,4 @@
-import {AnswerValues, RoundType, DataUrl} from '../data/constants';
+import {AnswerValues, RoundType, DataUrl, QuestionType} from '../data/constants';
 
 export default class DataGame {
   constructor() {
