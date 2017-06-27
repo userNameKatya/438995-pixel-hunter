@@ -22,7 +22,7 @@ export default class DataGame {
 
     data.map((it) => {
       const round = {
-        type: it.type === `one-of-three` ? RoundType.GUESS : RoundType.FIND,
+        type: it.type === QuestionType.ONE_OF_THREE ? RoundType.GUESS : RoundType.FIND,
         task: it.question,
         option: it.answers.map((answer, index, task) => {
           return {
@@ -42,10 +42,10 @@ export default class DataGame {
       name: `option${index + 1}`,
       value: AnswerValues[`${answer.type.toUpperCase()}`].value,
       description: AnswerValues[`${answer.type.toUpperCase()}`].description,
-      trueAnswer: answer.type !== `one-of-three` ? true : this.determineCorrectAnswer(task, answer)
+      trueAnswer: answer.type !== QuestionType.ONE_OF_THREE ? true : this.determineCorrectAnswer(task, answer)
     });
 
-    if (answer.type !== `one-of-three`) {
+    if (answer.type !== QuestionType.ONE_OF_THREE) {
       array.push({
         name: `option${index + 1}`,
         value: AnswerValues[`${answer.type.toUpperCase() === `PHOTO` ? `PAINTING` : `PHOTO`}`].value,

@@ -28,6 +28,12 @@ const ControllerId = {
   STATS: `stats`
 };
 
+const QuestionType = {
+  TWO_OF_TWO: `two-of-two`,
+  TINDER_LIKE: `tinder-like`,
+  ONE_OF_THREE: `one-of-three`
+};
+
 const DataUrl = `https://intensive-ecmascript-server-btfgudlkpi.now.sh/pixel-hunter/questions`;
 
-export {AnswersDescribe, AnswerValues, RoundType, ControllerId, DataUrl};
+export {AnswersDescribe, AnswerValues, RoundType, ControllerId, DataUrl, QuestionType};
