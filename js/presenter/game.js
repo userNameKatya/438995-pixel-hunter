@@ -1,9 +1,11 @@
 import {setCurrentState} from '../utils/set_current_state';
 import getCorrectAnswer from '../utils/get_correct_answer';
 import FindByTypeView from '../views/find_by_type';
+import {AnswersDescribe} from '../data/constants';
 import GuessTypeView from '../views/guess_type';
 import changeView from '../utils/change_view';
 import {RoundType} from '../data/constants';
+import StatsGame from '../model/stats_game';
 import DataGame from '../model/data_game';
 import Application from './application';
 
@@ -13,7 +15,7 @@ class GamePresenter {
 
     this.model.ready = (data) => {
       this.dataGame = data;
-      this.setDataNewRound(state);
+      this.setDataNewRound(Object.assign({}, state, {totalRounds: this.dataGame.length}));
       this.setNewRound();
     };
   }
@@ -21,7 +23,11 @@ class GamePresenter {
   get view() {
     let view;
     if (this.state.lives === 0 || this.state.currentRound === this.state.totalRounds) {
-      Application.showStats(this.state);
+      const resultArray = this.state.gameStats.concat(new Array(this.state.totalRounds - this.state.gameStats.length).fill(AnswersDescribe.UNKNOWN));
+      StatsGame.sendStats(Object.assign({}, this.state, {gameStats: resultArray}));
+      StatsGame.success = () => {
+        Application.showStats(this.state.userName);
+      };
       return null;
     }
     switch (this.roundData.type) {

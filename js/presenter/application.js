@@ -1,7 +1,5 @@
-import initialState from '../data/initial_state';
 import {ControllerId} from '../data/constants';
 import Greeting from '../presenter/greeting';
-import Adapter from '../utils/adapter';
 import Intro from '../presenter/intro';
 import Rules from '../presenter/rules';
 import Stats from '../presenter/stats';
@@ -33,17 +31,16 @@ class Application {
     location.hash = ControllerId.GAME;
   }
 
-  showGame() {
-    return new Game(initialState);
+  showGame(state) {
+    return new Game(state);
   }
 
-  showStats(data) {
-    location.hash = `${ControllerId.STATS}=${Adapter.encode(data)}`;
+  showStats(userName) {
+    location.hash = `${ControllerId.STATS}=${userName}`;
   }
 
   changeController() {
-    let [id = ``, params = ``] = location.hash.replace(`#`, ``).split(`=`);
-    params = params === `` ? params : Adapter.decode(params);
+    const [id = ``, params = ``] = location.hash.replace(`#`, ``).split(`=`);
     const Controller = this.routes[id];
     new Controller(params).init();
   }
