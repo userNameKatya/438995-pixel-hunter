@@ -40,6 +40,7 @@ class RulesView extends AbstractView {
 
     form.addEventListener(`submit`, (e) => {
       e.preventDefault();
+      submitBtn.disabled = true;
       this.onStart(input.value);
     });
   }

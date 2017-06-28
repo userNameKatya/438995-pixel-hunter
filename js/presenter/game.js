@@ -3,8 +3,8 @@ import getCorrectAnswer from '../utils/get_correct_answer';
 import FindByTypeView from '../views/find_by_type';
 import {AnswersDescribe} from '../data/constants';
 import GuessTypeView from '../views/guess_type';
+import {QuestionType} from '../data/constants';
 import changeView from '../utils/change_view';
-import {RoundType} from '../data/constants';
 import StatsGame from '../model/stats_game';
 import DataGame from '../model/data_game';
 import Application from './application';
@@ -31,11 +31,11 @@ class GamePresenter {
       return null;
     }
     switch (this.roundData.type) {
-      case RoundType.FIND:
-        view = new GuessTypeView(this.roundData, this.state);
-        break;
-      case RoundType.GUESS:
+      case QuestionType.ONE_OF_THREE:
         view = new FindByTypeView(this.roundData, this.state);
+        break;
+      default:
+        view = new GuessTypeView(this.roundData, this.state);
         break;
     }
     return view;
