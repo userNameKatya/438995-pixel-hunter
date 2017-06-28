@@ -1,5 +1,5 @@
 import startOverTemplate from '../templates/start_over_template';
-import {AnswersDescribe, TotalRounds} from '../data/constants';
+import {AnswersDescribe} from '../data/constants';
 import AbstractView from './abstract_view';
 import footer from '../templates/footer';
 import restart from '../utils/restart';
@@ -30,11 +30,6 @@ class StatsView extends AbstractView {
                     item.stats.map((stat) => {
                       return `<li class="stats__result stats__result--${stat}"></li>`;
                     }).join(``)
-                  }
-                  ${
-                    new Array(TotalRounds - item.stats.length)
-                      .fill(`<li class="stats__result stats__result--unknown"></li>`)
-                      .join(``)
                   }
                 </ul>
               </td>
