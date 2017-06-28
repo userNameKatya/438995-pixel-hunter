@@ -1,6 +1,5 @@
 import {ControllerId} from '../data/constants';
 import Greeting from '../presenter/greeting';
-import Adapter from '../utils/adapter';
 import Intro from '../presenter/intro';
 import Rules from '../presenter/rules';
 import Stats from '../presenter/stats';
@@ -37,12 +36,11 @@ class Application {
   }
 
   showStats(userName) {
-    location.hash = `${ControllerId.STATS}=${Adapter.encode(userName)}`;
+    location.hash = `${ControllerId.STATS}=${userName}`;
   }
 
   changeController() {
-    let [id = ``, params = ``] = location.hash.replace(`#`, ``).split(`=`);
-    params = params === `` ? params : Adapter.decode(params);
+    const [id = ``, params = ``] = location.hash.replace(`#`, ``).split(`=`);
     const Controller = this.routes[id];
     new Controller(params).init();
   }
