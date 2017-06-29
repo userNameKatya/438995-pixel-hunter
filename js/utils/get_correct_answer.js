@@ -1,10 +1,17 @@
-import {RoundType} from '../data/constants';
+import {QuestionType} from '../data/constants';
 
 const getCorrectAnswer = function (data, userAnswers) {
   let trueAnswer = false;
 
   switch (data.type) {
-    case RoundType.FIND:
+    case QuestionType.ONE_OF_THREE:
+      for (const it of data.option) {
+        if (it.img === userAnswers && it.answers[0].trueAnswer) {
+          trueAnswer = true;
+        }
+      }
+      break;
+    default:
       let trueAnswersCount = 0;
 
       for (const it of userAnswers) {
@@ -18,13 +25,6 @@ const getCorrectAnswer = function (data, userAnswers) {
       }
 
       trueAnswer = userAnswers.length === trueAnswersCount;
-      break;
-    case RoundType.GUESS:
-      for (const it of data.option) {
-        if (it.img === userAnswers && it.answers[0].trueAnswer) {
-          trueAnswer = true;
-        }
-      }
       break;
   }
 

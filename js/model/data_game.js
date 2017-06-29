@@ -1,4 +1,4 @@
-import {AnswerValues, RoundType, DataUrl, QuestionType} from '../data/constants';
+import {AnswerValues, DataUrl, QuestionType} from '../data/constants';
 
 export default class DataGame {
   constructor() {
@@ -22,12 +22,12 @@ export default class DataGame {
 
     data.map((it) => {
       const round = {
-        type: it.type === QuestionType.ONE_OF_THREE ? RoundType.GUESS : RoundType.FIND,
+        type: it.type,
         task: it.question,
         option: it.answers.map((answer, index, task) => {
           return {
             img: answer.image.url,
-            answers: this.getAnswerList(answer, index)
+            answers: this.getAnswerList(answer, index, task)
           };
         }),
       };

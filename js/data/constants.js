@@ -17,11 +17,6 @@ const AnswerValues = {
   }
 };
 
-const RoundType = {
-  FIND: 1,
-  GUESS: 2
-};
-
 const ControllerId = {
   INTRO: ``,
   GREETING: `greeting`,
@@ -38,4 +33,4 @@ const QuestionType = {
 const DataUrl = `https://intensive-ecmascript-server-btfgudlkpi.now.sh/pixel-hunter/questions`;
 const StatsUrl = `https://intensive-ecmascript-server-btfgudlkpi.now.sh/pixel-hunter/stats/`;
 
-export {AnswersDescribe, AnswerValues, RoundType, ControllerId, QuestionType, DataUrl, StatsUrl};
+export {AnswersDescribe, AnswerValues, ControllerId, QuestionType, DataUrl, StatsUrl};
