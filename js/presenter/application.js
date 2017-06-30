@@ -24,7 +24,7 @@ class Application {
   }
 
   showGreeting(crossfade) {
-    location.hash = `${ControllerId.GREETING}=${crossfade}`;
+    location.hash = crossfade ? `${ControllerId.GREETING}=${crossfade}` : `${ControllerId.GREETING}`;
   }
 
   showRules() {

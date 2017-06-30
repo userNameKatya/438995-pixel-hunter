@@ -6,50 +6,25 @@ const sizeByType = {
   [QuestionType.ONE_OF_THREE]: {width: 304, height: 455}
 };
 
-const calcResult = function (max, min, standart) {
-  let ratio = Math.ceil(max / standart);
-  let maxParam = max / ratio;
-  let minParam = min / ratio;
-
-  while (maxParam > standart) {
-    minParam = minParam / ratio;
-    maxParam = maxParam / ratio;
-  }
-
-  return {
-    max: maxParam,
-    min: minParam
-  };
-};
-
 const resize = function (frame, image) {
   const size = {
     width: image.width,
     height: image.height
   };
 
-  if (image.width > image.height) {
-    if (image.width > frame.width) {
-      const result = calcResult(image.width, image.height, frame.width);
+  let ratioWidth = 1;
+  let ratioHeight = 1;
 
-      size.height = result.min;
-      size.width = result.max;
-    }
-  } else if (image.width < image.height) {
-    if (image.height > frame.height) {
-      const result = calcResult(image.height, image.width, frame.height);
-
-      size.height = result.max;
-      size.width = result.min;
-    }
-  } else {
-    if (image.height > frame.height) {
-      const result = calcResult(image.height, image.width, frame.height);
-
-      size.height = result.max;
-      size.width = result.min;
-    }
+  if (image.height > frame.height) {
+    ratioHeight = frame.height / image.height;
   }
+
+  if (image.width > frame.width) {
+    ratioWidth = frame.width / image.width;
+  }
+
+  size.height = Math.floor(image.height * Math.min(ratioHeight, ratioWidth));
+  size.width = Math.floor(image.width * Math.min(ratioHeight, ratioWidth));
 
   return size;
 };

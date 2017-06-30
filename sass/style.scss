@@ -29,16 +29,21 @@ a {
   color: $main-font-color;
 }
 
-.absolute-bottom {
+.absolute-bottom,
+.absolute-top {
   position: absolute;
-  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
   opacity: 0;
 }
 
 .absolute-top {
-  position: absolute;
   top: 0;
-  opacity: 0;
+}
+
+.absolute-bottom {
+  bottom: 0;
 }
 
 @keyframes increase {
