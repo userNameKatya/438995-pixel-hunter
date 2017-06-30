@@ -15,7 +15,7 @@ export default class Rules {
     };
 
     this.view.restart = () => {
-      Application.showIntro();
+      Application.showGreeting();
     };
 
     changeView(this.view.element);

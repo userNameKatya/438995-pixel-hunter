@@ -15,8 +15,8 @@ class GamePresenter {
 
     this.model.ready = (data) => {
       this.dataGame = data;
-      this.setDataNewRound(Object.assign({}, state, {totalRounds: this.dataGame.length}));
-      this.setNewRound();
+      this._setDataNewRound(Object.assign({}, state, {totalRounds: this.dataGame.length}));
+      this._setNewRound();
     };
   }
 
@@ -41,44 +41,44 @@ class GamePresenter {
     return view;
   }
 
-  setDataNewRound(state) {
+  _setDataNewRound(state) {
     this.state = state;
     this.roundData = this.dataGame[this.state.currentRound];
     this.time = this.state.time;
     this.timerId = null;
   }
 
-  setNewRound() {
+  _setNewRound() {
     const view = this.view;
 
     if (view) {
       view.onAnswer = (answers) => {
         clearInterval(this.timerId);
         const correctAnswer = answers !== null ? getCorrectAnswer(this.roundData, answers) : false;
-        this.setDataNewRound(setCurrentState(this.state, correctAnswer, this.time));
-        this.setNewRound();
+        this._setDataNewRound(setCurrentState(this.state, correctAnswer, this.time));
+        this._setNewRound();
       };
 
       view.restart = () => {
         clearInterval(this.timerId);
-        Application.showIntro();
+        Application.showGreeting();
       };
 
       changeView(view.element);
 
-      this.setTimer();
+      this._setTimer();
     }
   }
 
-  setTimer() {
+  _setTimer() {
     const timerContainer = document.querySelector(`.js-timer`);
 
     this.timerId = setInterval(() => {
       --this.time;
       if (this.time === 0) {
         clearInterval(this.timerId);
-        this.setDataNewRound(setCurrentState(this.state, false, this.time));
-        this.setNewRound();
+        this._setDataNewRound(setCurrentState(this.state, false, this.time));
+        this._setNewRound();
       }
       if (this.time === 5) {
         timerContainer.classList.add(`warning`);

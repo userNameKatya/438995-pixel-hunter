@@ -28,3 +28,73 @@ body {
 a {
   color: $main-font-color;
 }
+
+.absolute-bottom {
+  position: absolute;
+  bottom: 0;
+  opacity: 0;
+}
+
+.absolute-top {
+  position: absolute;
+  top: 0;
+  opacity: 0;
+}
+
+@keyframes increase {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: .2;
+  }
+  40% {
+    opacity: .4;
+  }
+  60% {
+    opacity: .6;
+  }
+  80% {
+    opacity: .8;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes reduce {
+  0% {
+    opacity: 1;
+  }
+  20% {
+    opacity: .8;
+  }
+  40% {
+    opacity: .6;
+  }
+  60% {
+    opacity: .4;
+  }
+  80% {
+    opacity: .2;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.opaque {
+  animation-name: increase;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 1;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+
+.transparent {
+  animation-name: reduce;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 1;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}

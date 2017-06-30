@@ -9,7 +9,7 @@ export default class DataGame {
         }
 
         response.json().then((data) => {
-          this.responseData(data);
+          this._responseData(data);
         });
       })
       .catch((error) => {
@@ -17,7 +17,7 @@ export default class DataGame {
       });
   }
 
-  responseData(data) {
+  _responseData(data) {
     const resultArray = [];
 
     data.map((it) => {
@@ -27,7 +27,7 @@ export default class DataGame {
         option: it.answers.map((answer, index, task) => {
           return {
             img: answer.image.url,
-            answers: this.getAnswerList(answer, index, task)
+            answers: this._getAnswerList(answer, index, task)
           };
         }),
       };
@@ -37,12 +37,12 @@ export default class DataGame {
     this.ready(resultArray);
   }
 
-  getAnswerList(answer, index, task) {
+  _getAnswerList(answer, index, task) {
     const array = new Array(1).fill({
       name: `option${index + 1}`,
       value: AnswerValues[`${answer.type.toUpperCase()}`].value,
       description: AnswerValues[`${answer.type.toUpperCase()}`].description,
-      trueAnswer: answer.type !== QuestionType.ONE_OF_THREE ? true : this.determineCorrectAnswer(task, answer)
+      trueAnswer: answer.type !== QuestionType.ONE_OF_THREE ? true : this._determineCorrectAnswer(task, answer)
     });
 
     if (answer.type !== QuestionType.ONE_OF_THREE) {
@@ -57,7 +57,7 @@ export default class DataGame {
     return array;
   }
 
-  determineCorrectAnswer(task, answer) {
+  _determineCorrectAnswer(task, answer) {
     let type;
     if (task.indexOf(AnswerValues.PAINTING.description.toLowerCase()) > -1) {
       type = AnswerValues.PAINTING.value;

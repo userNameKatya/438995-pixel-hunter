@@ -4,6 +4,11 @@ import footer from '../templates/footer';
 import restart from '../utils/restart';
 
 class RulesView extends AbstractView {
+
+  onStart() {}
+
+  restart() {}
+
   get template() {
     return `<header class="header">
         ${startOverTemplate}
@@ -44,10 +49,6 @@ class RulesView extends AbstractView {
       this.onStart(input.value);
     });
   }
-
-  onStart() {}
-
-  restart() {}
 }
 
 export default RulesView;

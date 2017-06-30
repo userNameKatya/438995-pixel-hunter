@@ -18,6 +18,14 @@ class GreetingView extends AbstractView {
     </div>
     ${footer}`;
   }
+
+  bind(elem) {
+    const buttonNext = elem.querySelector(`.js-next-screen`);
+
+    buttonNext.addEventListener(`click`, () => {
+      this.next();
+    });
+  }
 }
 
 export default GreetingView;
