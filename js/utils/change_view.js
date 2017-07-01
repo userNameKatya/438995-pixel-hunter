@@ -1,7 +1,7 @@
 const screen = document.querySelector(`.js-main-screen`);
 
 const changeView = function (view, crossfade = false) {
-  if (crossfade === true) {
+  if (crossfade) {
     if ([...screen.childNodes].length) {
       for (const it of view.children) {
         it.classList.add(`js-back`);
