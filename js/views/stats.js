@@ -5,8 +5,6 @@ import footer from '../templates/footer';
 import restart from '../utils/restart';
 
 class StatsView extends AbstractView {
-  restart() {}
-
   get template() {
     const countQuantity = (array, value) => {
       return array.reduce(function (sum, it) {
@@ -69,6 +67,8 @@ class StatsView extends AbstractView {
     </div>
     ${footer}`;
   }
+
+  restart() {}
 
   bind(elem) {
     restart(elem, this);

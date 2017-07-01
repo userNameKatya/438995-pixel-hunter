@@ -33,6 +33,7 @@ export default class Intro {
       image.addEventListener(`load`, (e) => {
         --this.notLoadedCount;
         if (this.notLoadedCount === 0) {
+          this.resultArray.length = 0;
           Application.showGreeting(true);
         }
       });

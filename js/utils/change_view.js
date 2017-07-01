@@ -1,10 +1,7 @@
 const screen = document.querySelector(`.js-main-screen`);
 
 const changeView = function (view, crossfade = false) {
-  if (!crossfade) {
-    screen.innerHTML = ``;
-    screen.appendChild(view);
-  } else {
+  if (crossfade === true) {
     if ([...screen.childNodes].length) {
       for (const it of view.children) {
         it.classList.add(`js-back`);
@@ -45,6 +42,9 @@ const changeView = function (view, crossfade = false) {
     } else {
       screen.appendChild(view);
     }
+  } else {
+    screen.innerHTML = ``;
+    screen.appendChild(view);
   }
 };
 

@@ -19,6 +19,8 @@ class GreetingView extends AbstractView {
     ${footer}`;
   }
 
+  next() {}
+
   bind(elem) {
     const buttonNext = elem.querySelector(`.js-next-screen`);
 
