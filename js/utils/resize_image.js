@@ -23,8 +23,10 @@ const resize = function (frame, image) {
     ratioWidth = frame.width / image.width;
   }
 
-  size.height = Math.floor(image.height * Math.min(ratioHeight, ratioWidth));
-  size.width = Math.floor(image.width * Math.min(ratioHeight, ratioWidth));
+  const min = Math.min(ratioHeight, ratioWidth);
+
+  size.height = Math.floor(image.height * min);
+  size.width = Math.floor(image.width * min);
 
   return size;
 };
