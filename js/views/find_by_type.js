@@ -6,6 +6,7 @@ import footer from '../templates/footer';
 import restart from '../utils/restart';
 
 class FindByTypeView extends AbstractView {
+
   get template() {
     return `${header(this.state)}
     <div class="game">
@@ -24,6 +25,10 @@ class FindByTypeView extends AbstractView {
     ${footer}`;
   }
 
+  onAnswer() {}
+
+  restart() {}
+
   bind(elem) {
     resizeImage(elem, this.data.type);
     restart(elem, this);
@@ -38,10 +43,6 @@ class FindByTypeView extends AbstractView {
       });
     }
   }
-
-  onAnswer() {}
-
-  restart() {}
 }
 
 export default FindByTypeView;

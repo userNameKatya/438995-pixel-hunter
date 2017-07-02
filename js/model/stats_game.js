@@ -24,7 +24,7 @@ class StatsGame {
         'Accept': `application/json`,
         'Content-Type': `application/json`
       },
-      body: this.serialize(state)
+      body: this._serialize(state)
     })
       .then((response) => {
         if (response.status !== 200) {
@@ -37,7 +37,7 @@ class StatsGame {
       });
   }
 
-  serialize(object) {
+  _serialize(object) {
     return JSON.stringify({
       lives: object.lives,
       stats: object.gameStats

@@ -7,6 +7,7 @@ import footer from '../templates/footer';
 import restart from '../utils/restart';
 
 class GuessForEachView extends AbstractView {
+
   get template() {
     return `${header(this.state)}
     <div class="game">
@@ -33,6 +34,10 @@ class GuessForEachView extends AbstractView {
     ${footer}`;
   }
 
+  onAnswer() {}
+
+  restart() {}
+
   bind(elem) {
     resizeImage(elem, this.data.type);
     restart(elem, this);
@@ -54,10 +59,6 @@ class GuessForEachView extends AbstractView {
       });
     }
   }
-
-  onAnswer() {}
-
-  restart() {}
 }
 
 export default GuessForEachView;

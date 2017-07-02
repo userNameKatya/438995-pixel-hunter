@@ -15,7 +15,7 @@ class Application {
     };
 
     window.onhashchange = () => {
-      this.changeController();
+      this._changeController();
     };
   }
 
@@ -23,8 +23,8 @@ class Application {
     location.hash = ControllerId.INTRO;
   }
 
-  showGreeting() {
-    location.hash = ControllerId.GREETING;
+  showGreeting(crossfade) {
+    location.hash = crossfade ? `${ControllerId.GREETING}=${crossfade}` : `${ControllerId.GREETING}`;
   }
 
   showRules() {
@@ -39,14 +39,14 @@ class Application {
     location.hash = `${ControllerId.STATS}=${userName}`;
   }
 
-  changeController() {
+  _changeController() {
     const [id = ``, params = ``] = location.hash.replace(`#`, ``).split(`=`);
     const Controller = this.routes[id];
     new Controller(params).init();
   }
 
   init() {
-    this.changeController();
+    this._changeController();
   }
 }
 

@@ -68,11 +68,11 @@ class StatsView extends AbstractView {
     ${footer}`;
   }
 
+  restart() {}
+
   bind(elem) {
     restart(elem, this);
   }
-
-  restart() {}
 }
 
 export default StatsView;

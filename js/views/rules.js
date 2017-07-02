@@ -27,6 +27,10 @@ class RulesView extends AbstractView {
     ${footer}`;
   }
 
+  onStart() {}
+
+  restart() {}
+
   bind(elem) {
     restart(elem, this);
 
@@ -44,10 +48,6 @@ class RulesView extends AbstractView {
       this.onStart(input.value);
     });
   }
-
-  onStart() {}
-
-  restart() {}
 }
 
 export default RulesView;

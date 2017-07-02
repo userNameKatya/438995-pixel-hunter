@@ -12,15 +12,15 @@ export default class Stats {
     StatsGame.getStats(this.userName);
     StatsGame.success = (data) => {
       this.stats = data;
-      this.callView();
+      this._callView();
     };
   }
 
-  callView() {
+  _callView() {
     this.view = new StatsView(this.stats);
 
     this.view.restart = () => {
-      Application.showIntro();
+      Application.showGreeting();
     };
 
     changeView(this.view.element);

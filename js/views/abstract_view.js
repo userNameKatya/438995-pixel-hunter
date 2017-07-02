@@ -14,34 +14,27 @@ class AbstractView {
     throw new Error(`Not Implemented`);
   }
 
-  render() {
+  get element() {
+    const elem = this._getMarkup();
+    this.bind(elem);
+    return elem;
+  }
+
+  _render() {
     const fragment = document.createElement(`template`);
 
     fragment.innerHTML = this.template;
     return fragment.content;
   }
 
-  get element() {
-    const elem = this.getMarkup();
-    this.bind(elem);
-    return elem;
-  }
-
-  bind(elem) {
-    const buttonNext = elem.querySelector(`.js-next-screen`);
-    buttonNext.addEventListener(`click`, () => {
-      this.next();
-    });
-  }
-
-  getMarkup() {
+  _getMarkup() {
     if (this.view === null) {
-      this.view = this.render();
+      this.view = this._render();
     }
     return this.view.cloneNode(true);
   }
 
-  next() {}
+  bind(elem) {}
 }
 
 export default AbstractView;
