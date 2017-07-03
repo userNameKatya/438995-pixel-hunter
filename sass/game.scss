@@ -134,6 +134,12 @@
   width: 304px;
   height: 455px;
 
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  outline: none;
+  box-sizing: content-box;
+
   &:hover {
     border-color: #df4e4e;
   }
