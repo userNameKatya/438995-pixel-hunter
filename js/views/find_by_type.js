@@ -14,9 +14,9 @@ class FindByTypeView extends AbstractView {
       <form class="game__content  game__content--triple">
         ${
           this.data.option.map((opt, index) => {
-            return `<div class="game__option js-answer">
+            return `<button type="button" class="game__option js-answer">
               <img class="js-image" src="${opt.img}" alt="Option ${index + 1}">
-            </div>`;
+            </button>`;
           }).join(``)
         }
       </form>
@@ -35,7 +35,7 @@ class FindByTypeView extends AbstractView {
 
     const answers = [...elem.querySelectorAll(`.js-answer`)];
 
-    for (let answer of answers) {
+    for (const answer of answers) {
       answer.addEventListener(`click`, (e) => {
         const src = e.target.querySelector(`img`).src;
 
